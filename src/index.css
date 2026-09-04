@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #030712;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00f2fe;
+  }
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+  background: rgba(12, 20, 43, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(0, 242, 254, 0.35);
+  box-shadow: 0 10px 30px -10px rgba(0, 242, 254, 0.15);
+  transform: translateY(-3px);
+}
+
+.glass-glow-cyan {
+  background: rgba(8, 13, 26, 0.88);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  box-shadow: 0 0 40px rgba(0, 242, 254, 0.08);
+}
+
+.glass-glow-purple {
+  background: rgba(12, 10, 28, 0.88);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  box-shadow: 0 0 40px rgba(168, 85, 247, 0.08);
+}
+
+/* Text Radiance */
+.text-glow-cyan {
+  text-shadow: 0 0 25px rgba(0, 242, 254, 0.45);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 25px rgba(168, 85, 247, 0.45);
+}
+
+/* Terminal Cursor Blink */
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Print optimizations for Resume sheet */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  #cursor-dot, #cursor-ring, #canvas-container, header, footer, #quick-3d-dock, nav {
+    display: none !important;
+  }
+  .glass-panel, .glass-card, .glass-glow-cyan {
+    background: transparent !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+}
