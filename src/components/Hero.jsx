@@ -143,8 +143,10 @@ export function Hero() {
               <ArrowUpRight className="w-3.5 h-3.5 text-obsidian-950" />
             </button>
             <a
-              href={`/${encodeURIComponent(RESUME_DATA.resumeFileName)}`}
+              href={`${import.meta.env.BASE_URL}${RESUME_DATA.resumeFileName}`}
               download={RESUME_DATA.downloadFileName}
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-4 py-3 rounded-xl bg-gradient-to-r from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/30 hover:to-blue-500/30 border border-cyber-cyan/50 text-cyber-cyan font-mono text-xs font-bold flex items-center gap-2 transition shadow-sm hover:scale-105"
               title="Download Verified Resume PDF"
             >

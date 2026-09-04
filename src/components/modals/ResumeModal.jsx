@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { usePortfolio } from '../../context/PortfolioContext';
 import { RESUME_DATA } from '../../data/portfolioData';
-import { X, Download, Printer, FileText, CheckCircle2 } from 'lucide-react';
+import { X, Download, Printer, FileText, CheckCircle2, ExternalLink } from 'lucide-react';
 
 export function ResumeModal() {
   const { activeModal, closeModal } = usePortfolio();
@@ -40,12 +40,24 @@ export function ResumeModal() {
 
           <div className="flex items-center gap-2">
             <a
-              href={`/${encodeURIComponent(RESUME_DATA.resumeFileName)}`}
+              href={`${import.meta.env.BASE_URL}${RESUME_DATA.resumeFileName}`}
               download={RESUME_DATA.downloadFileName}
+              target="_blank"
+              rel="noopener noreferrer"
               className="p-2 px-3 rounded-xl bg-cyber-cyan text-obsidian-950 font-bold font-mono text-xs flex items-center gap-1.5 transition hover:bg-cyan-300"
+              title="Download PDF Document"
             >
               <Download className="w-4 h-4" />
               <span className="hidden sm:inline">Download PDF</span>
+            </a>
+            <a
+              href={`${import.meta.env.BASE_URL}${RESUME_DATA.resumeFileName}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-xl glass-panel hover:bg-white/10 text-slate-300 hover:text-cyber-cyan transition"
+              title="Open Original PDF in New Tab"
+            >
+              <ExternalLink className="w-4 h-4" />
             </a>
             <button
               onClick={() => window.print()}

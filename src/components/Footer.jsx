@@ -143,8 +143,10 @@ export function Footer() {
           </div>
           <div className="space-y-2">
             <a
-              href={`/${encodeURIComponent(RESUME_DATA.resumeFileName)}`}
+              href={`${import.meta.env.BASE_URL}${RESUME_DATA.resumeFileName}`}
               download={RESUME_DATA.downloadFileName}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full py-2 px-3 rounded-xl bg-cyber-cyan hover:bg-cyan-300 text-obsidian-950 font-bold flex items-center justify-center gap-1.5 transition text-[11px] shadow-sm"
               title="Download Verified Resume PDF"
             >
