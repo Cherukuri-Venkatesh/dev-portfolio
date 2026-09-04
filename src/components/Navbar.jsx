@@ -187,7 +187,7 @@ export function Navbar() {
             title="Download Official Resume PDF"
           >
             <Download className="w-3.5 h-3.5 text-cyber-cyan" />
-            <span>Resume.pdf</span>
+            <span>resume.pdf</span>
           </a>
 
           {/* Mobile Menu Toggle */}

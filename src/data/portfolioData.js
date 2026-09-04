@@ -7,8 +7,8 @@ export const RESUME_DATA = {
   email: "2400032597cse1@gmail.com",
   phone: "+91 9490238585",
   summary: "Results-driven Java Backend Developer with strong expertise in Java, Spring Boot, Spring Framework, RESTful APIs, MySQL, and SQL. Proficient in designing scalable backend architectures, relational database schemas, stateless JWT authentication, and data-driven solutions using Python and SQL. 1000+ competitive programming problems solved across CodeChef, LeetCode, and HackerRank.",
-  resumeFileName: "Cherukuri_Venkatesh_Resume.pdf",
-  downloadFileName: "Cherukuri_Venkatesh_Resume.pdf",
+  resumeFileName: "resume.pdf",
+  downloadFileName: "resume.pdf",
   
   roles: [
     "Java Backend Developer (Spring Boot, Microservices, REST APIs)",
