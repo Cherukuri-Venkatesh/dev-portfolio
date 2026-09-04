@@ -4,7 +4,7 @@ import { RESUME_DATA } from '../../data/portfolioData';
 import { X, Download, Printer, FileText, CheckCircle2, ExternalLink } from 'lucide-react';
 
 export function ResumeModal() {
-  const { activeModal, closeModal } = usePortfolio();
+  const { activeModal, closeModal, playSound, showToast } = usePortfolio();
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -42,8 +42,10 @@ export function ResumeModal() {
             <a
               href={`${import.meta.env.BASE_URL}${RESUME_DATA.resumeFileName}`}
               download={RESUME_DATA.downloadFileName}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={() => {
+                playSound('success');
+                showToast('Initiating resume.pdf download...', 'success');
+              }}
               className="p-2 px-3 rounded-xl bg-cyber-cyan text-obsidian-950 font-bold font-mono text-xs flex items-center gap-1.5 transition hover:bg-cyan-300"
               title="Download PDF Document"
             >

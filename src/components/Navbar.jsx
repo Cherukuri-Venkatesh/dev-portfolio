@@ -20,7 +20,7 @@ const NAV_ITEMS = [
 ];
 
 export function Navbar() {
-  const { openModal, soundEnabled, setSoundEnabled, playSound } = usePortfolio();
+  const { openModal, soundEnabled, setSoundEnabled, playSound, showToast } = usePortfolio();
   const [activeSection, setActiveSection] = useState('hero');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -181,8 +181,10 @@ export function Navbar() {
           <a
             href={`${import.meta.env.BASE_URL}${RESUME_DATA.resumeFileName}`}
             download={RESUME_DATA.downloadFileName}
-            target="_blank"
-            rel="noopener noreferrer"
+            onClick={() => {
+              playSound('success');
+              showToast('Initiating resume.pdf download...', 'success');
+            }}
             className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-violet-500/20 hover:from-cyan-500/30 hover:to-violet-500/30 border border-cyber-cyan/50 text-cyber-cyan text-[11px] font-mono font-bold flex items-center gap-1.5 transition shadow-[0_0_15px_rgba(0,242,254,0.2)] hover:scale-[1.02]"
             title="Download Official Resume PDF"
           >

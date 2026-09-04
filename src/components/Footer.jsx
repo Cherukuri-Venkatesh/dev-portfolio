@@ -17,7 +17,7 @@ import {
 } from './icons/BrandIcons';
 
 export function Footer() {
-  const { openModal, animSpeed, setAnimSpeed, playSound } = usePortfolio();
+  const { openModal, animSpeed, setAnimSpeed, playSound, showToast } = usePortfolio();
 
   const scrollToSection = (id) => {
     playSound('click');
@@ -145,8 +145,10 @@ export function Footer() {
             <a
               href={`${import.meta.env.BASE_URL}${RESUME_DATA.resumeFileName}`}
               download={RESUME_DATA.downloadFileName}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={() => {
+                playSound('success');
+                showToast('Initiating resume.pdf download...', 'success');
+              }}
               className="w-full py-2 px-3 rounded-xl bg-cyber-cyan hover:bg-cyan-300 text-obsidian-950 font-bold flex items-center justify-center gap-1.5 transition text-[11px] shadow-sm"
               title="Download Verified Resume PDF"
             >

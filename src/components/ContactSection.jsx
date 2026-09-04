@@ -220,8 +220,10 @@ export function ContactSection() {
               <a
                 href={`${import.meta.env.BASE_URL}${RESUME_DATA.resumeFileName}`}
                 download={RESUME_DATA.downloadFileName}
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={() => {
+                  playSound('success');
+                  showToast('Initiating resume.pdf download...', 'success');
+                }}
                 className="flex-1 py-2 rounded-xl bg-cyber-cyan hover:bg-cyan-300 text-obsidian-950 font-bold font-mono text-center flex items-center justify-center gap-1.5 transition shadow-sm text-xs"
               >
                 <Download className="w-3.5 h-3.5" />
