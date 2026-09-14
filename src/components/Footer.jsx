@@ -19,6 +19,7 @@ import {
 
 export function Footer() {
   const { openModal, animSpeed, setAnimSpeed, playSound, showToast } = usePortfolio();
+  const [visitorTimestamp] = React.useState(() => Date.now());
 
   const scrollToSection = (id) => {
     playSound('click');
@@ -205,33 +206,34 @@ export function Footer() {
 
       </div>
 
-      {/* Bottom Bar with Copyright & Back to Top */}
-      <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slate-400">
+      {/* Bottom Bar with Copyright, Live Traffic Telemetry & Back to Top */}
+      <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 font-mono text-xs text-slate-400">
         <div>
           &copy; {new Date().getFullYear()} Cherukuri Venkatesh. All rights reserved.
         </div>
-        <div className="flex flex-wrap items-center justify-center sm:justify-end gap-4 sm:gap-6 text-[11px]">
-          {/* Live Visitor Counter */}
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-obsidian-900/90 border border-white/10 shadow-[0_0_10px_rgba(0,242,254,0.05)]">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-cyan opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyber-cyan"></span>
-            </span>
-            <Users className="w-3.5 h-3.5 text-cyber-cyan mr-0.5" />
-            <img
-              src="https://hits.sh/cherukuri-venkatesh.github.io/dev-portfolio.svg?style=flat-square&label=Visits&color=00f2fe&labelColor=070d1e"
-              alt="Total Page Visits"
-              className="h-4 inline-block rounded"
-              loading="lazy"
-            />
-          </div>
 
+        {/* Live Visitor Counter */}
+        <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-obsidian-900/90 border border-cyber-cyan/30 shadow-[0_0_15px_rgba(0,242,254,0.12)]">
+          <span className="relative flex h-2.5 w-2.5 shrink-0">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400 shadow-[0_0_8px_#34d399]"></span>
+          </span>
+          <Users className="w-4 h-4 text-cyber-cyan shrink-0" />
+          <img
+            src={`https://hits.sh/cherukuri-venkatesh.github.io/dev-portfolio.svg?style=for-the-badge&label=VISITS&color=0284c7&labelColor=070d1e&v=${visitorTimestamp}`}
+            alt="Live Total Page Visits"
+            className="h-6 sm:h-7 inline-block rounded-md overflow-hidden shadow-sm"
+            loading="eager"
+          />
+        </div>
+
+        <div className="flex items-center gap-6 text-[11px]">
           <span className="text-slate-400">
             Algorithmic Uptime: <strong className="text-emerald-400">{RESUME_DATA.stats.uptime}</strong>
           </span>
           <button
             onClick={() => scrollToSection('hero')}
-            className="hover:text-cyber-cyan transition flex items-center gap-1 text-slate-300"
+            className="hover:text-cyber-cyan transition flex items-center gap-1 text-slate-300 font-semibold"
           >
             <span>Back to Top</span>
             <ArrowUp className="w-3.5 h-3.5" />
