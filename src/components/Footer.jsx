@@ -6,7 +6,8 @@ import {
   Eye, 
   ArrowUp, 
   MapPin,
-  CheckCircle2
+  CheckCircle2,
+  Users
 } from 'lucide-react';
 import { 
   LinkedinIcon, 
@@ -209,7 +210,22 @@ export function Footer() {
         <div>
           &copy; {new Date().getFullYear()} Cherukuri Venkatesh. All rights reserved.
         </div>
-        <div className="flex items-center gap-6 text-[11px]">
+        <div className="flex flex-wrap items-center justify-center sm:justify-end gap-4 sm:gap-6 text-[11px]">
+          {/* Live Visitor Counter */}
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-obsidian-900/90 border border-white/10 shadow-[0_0_10px_rgba(0,242,254,0.05)]">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-cyan opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyber-cyan"></span>
+            </span>
+            <Users className="w-3.5 h-3.5 text-cyber-cyan mr-0.5" />
+            <img
+              src="https://hits.sh/cherukuri-venkatesh.github.io/dev-portfolio.svg?style=flat-square&label=Visits&color=00f2fe&labelColor=070d1e"
+              alt="Total Page Visits"
+              className="h-4 inline-block rounded"
+              loading="lazy"
+            />
+          </div>
+
           <span className="text-slate-400">
             Algorithmic Uptime: <strong className="text-emerald-400">{RESUME_DATA.stats.uptime}</strong>
           </span>
