@@ -103,17 +103,22 @@ export function ContactSection() {
     <section id="contact" className="space-y-8 scroll-mt-28">
       
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-5">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6">
         <div>
-          <div className="font-mono text-xs text-cyber-cyan tracking-widest uppercase flex items-center gap-2">
-            <span>// 08. DIRECT CHANNELS</span>
-            <span className="w-12 h-[1px] bg-cyber-cyan/40"></span>
+          <div className="font-mono text-xs text-orange-400 tracking-widest uppercase flex items-center gap-2">
+            <span className="w-24 h-[2px] bg-gradient-to-r from-orange-500 to-amber-400"></span>
+            <span>07. DIRECT CHANNELS</span>
           </div>
-          <h2 className="font-display font-bold text-2xl sm:text-3xl text-white mt-1">
-            Contact &amp; Initialize Transmission
+
+          <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white mt-1.5 tracking-tight">
+            Contact &amp;
+            <br className="hidden sm:inline" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500 text-glow-ember">
+              Initialize Transmission
+            </span>
           </h2>
         </div>
-        <p className="font-mono text-xs text-slate-400 max-w-md">
+        <p className="font-mono text-xs text-slate-400 max-w-md leading-relaxed">
           Direct communication channels to reach Cherukuri Venkatesh for Java backend engineering, Data Science, and Cloud roles.
         </p>
       </div>
@@ -124,9 +129,9 @@ export function ContactSection() {
         <div className="lg:col-span-5 space-y-3.5 font-mono text-xs">
           
           {/* Email Card */}
-          <div className="glass-card p-4 sm:p-5 rounded-2xl border-white/10 flex items-center justify-between group hover:border-cyber-cyan/40 transition">
+          <div className="glass-card p-4 sm:p-5 rounded-2xl border-white/10 flex items-center justify-between group hover:border-orange-500/40 hover:shadow-[0_8px_25px_rgba(255,87,34,0.18)] transition">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-cyan-500/10 text-cyber-cyan flex items-center justify-center group-hover:scale-110 transition">
+              <div className="w-9 h-9 rounded-xl bg-orange-500/10 text-orange-400 flex items-center justify-center group-hover:scale-110 transition">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                 </svg>
@@ -135,7 +140,7 @@ export function ContactSection() {
                 <div className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">PRIMARY EMAIL</div>
                 <a
                   href={`mailto:${RESUME_DATA.email}`}
-                  className="text-slate-200 hover:text-cyber-cyan font-bold transition select-all text-xs"
+                  className="text-slate-200 hover:text-orange-400 font-bold transition select-all text-xs"
                 >
                   {RESUME_DATA.email}
                 </a>
@@ -151,9 +156,9 @@ export function ContactSection() {
           </div>
 
           {/* Phone Card */}
-          <div className="glass-card p-4 sm:p-5 rounded-2xl border-white/10 flex items-center justify-between group hover:border-emerald-500/40 transition">
+          <div className="glass-card p-4 sm:p-5 rounded-2xl border-white/10 flex items-center justify-between group hover:border-amber-500/40 hover:shadow-[0_8px_25px_rgba(251,191,36,0.18)] transition">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-cyber-emerald flex items-center justify-center group-hover:scale-110 transition">
+              <div className="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center group-hover:scale-110 transition">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                 </svg>
@@ -162,7 +167,7 @@ export function ContactSection() {
                 <div className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">DIRECT PHONE</div>
                 <a
                   href={`tel:${RESUME_DATA.phone.replace(/\s+/g, '')}`}
-                  className="text-slate-200 hover:text-cyber-emerald font-bold transition select-all text-xs"
+                  className="text-slate-200 hover:text-amber-400 font-bold transition select-all text-xs"
                 >
                   {RESUME_DATA.phone}
                 </a>
@@ -171,7 +176,7 @@ export function ContactSection() {
             <div className="flex items-center gap-1">
               <a
                 href={`tel:${RESUME_DATA.phone.replace(/\s+/g, '')}`}
-                className="p-1.5 rounded-lg glass-panel hover:bg-emerald-500/20 text-slate-400 hover:text-emerald-400 transition"
+                className="p-1.5 rounded-lg glass-panel hover:bg-amber-500/20 text-slate-400 hover:text-amber-400 transition"
                 title="Call Direct"
               >
                 <PhoneCall className="w-3.5 h-3.5" />
@@ -187,9 +192,9 @@ export function ContactSection() {
           </div>
 
           {/* Location Card */}
-          <div className="glass-card p-4 sm:p-5 rounded-2xl border-white/10 flex items-center justify-between group hover:border-purple-500/40 transition">
+          <div className="glass-card p-4 sm:p-5 rounded-2xl border-white/10 flex items-center justify-between group hover:border-orange-500/40 hover:shadow-[0_8px_25px_rgba(255,87,34,0.18)] transition">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-violet-500/10 text-cyber-violet flex items-center justify-center group-hover:scale-110 transition">
+              <div className="w-9 h-9 rounded-xl bg-orange-500/10 text-orange-400 flex items-center justify-center group-hover:scale-110 transition">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                 </svg>
@@ -203,15 +208,15 @@ export function ContactSection() {
           </div>
 
           {/* Resume PDF Download & View Card */}
-          <div className="glass-glow-cyan p-4 sm:p-5 rounded-2xl space-y-2.5">
+          <div className="glass-glow-ember p-4 sm:p-5 rounded-2xl space-y-2.5 border border-orange-500/30 shadow-[0_0_35px_rgba(255,87,34,0.15)]">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-cyber-cyan font-bold text-xs">
-                <svg className="w-4 h-4 text-cyber-cyan" viewBox="0 0 24 24" fill="currentColor">
+              <div className="flex items-center gap-2 text-orange-400 font-bold text-xs">
+                <svg className="w-4 h-4 text-orange-400" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9.5 8.5h-2v1.5h1.5v1H7.5V17H6v-6.5h3.5c.83 0 1.5.67 1.5 1.5v1c0 .83-.67 1.5-1.5 1.5zm8 3.5c0 .83-.67 1.5-1.5 1.5H13v-6.5h3c.83 0 1.5.67 1.5 1.5V15zm-4.5-1h1.5v-1.5H13V14zm-4-1.5h1v-1h-1v1zM20 7H4V5h16v2z"/>
                 </svg>
                 <span>Official Resume Document (PDF)</span>
               </div>
-              <span className="text-[9px] px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-mono">Updated</span>
+              <span className="text-[9px] px-1.5 py-0.5 rounded bg-orange-500/20 text-orange-300 font-mono">Verified</span>
             </div>
             <p className="text-[11px] text-slate-300 font-sans leading-relaxed">
               Download the exact verified resume PDF or inspect the complete formatted preview sheet.
@@ -224,16 +229,16 @@ export function ContactSection() {
                   playSound('success');
                   showToast('Initiating resume.pdf download...', 'success');
                 }}
-                className="flex-1 py-2 rounded-xl bg-cyber-cyan hover:bg-cyan-300 text-obsidian-950 font-bold font-mono text-center flex items-center justify-center gap-1.5 transition shadow-sm text-xs"
+                className="flex-1 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-obsidian-950 font-bold font-mono text-center flex items-center justify-center gap-1.5 transition shadow-sm text-xs"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Download PDF</span>
               </a>
               <button
                 onClick={() => openModal('resume')}
-                className="py-2 px-3.5 rounded-xl glass-panel hover:bg-white/10 text-white font-mono text-xs transition flex items-center gap-1.5"
+                className="py-2 px-3.5 rounded-xl glass-panel hover:bg-orange-500/10 hover:border-orange-500/30 text-white hover:text-orange-300 font-mono text-xs transition flex items-center gap-1.5"
               >
-                <Eye className="w-3.5 h-3.5 text-cyber-cyan" />
+                <Eye className="w-3.5 h-3.5 text-orange-400" />
                 <span>Preview</span>
               </button>
             </div>
@@ -244,8 +249,8 @@ export function ContactSection() {
         {/* Right: Working "Initialize Transmission" Form (7 Cols) */}
         <div className="lg:col-span-7 glass-panel rounded-2xl p-6 sm:p-7 border-white/10 space-y-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-cyber-cyan/10 border border-cyber-cyan/20 text-cyber-cyan font-mono text-[9px] font-bold uppercase mb-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyber-cyan animate-ping"></span>
+            <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-orange-500/10 border border-orange-500/20 text-orange-400 font-mono text-[9px] font-bold uppercase mb-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-ping"></span>
               SECURE ENCRYPTED DISPATCH
             </div>
             <h3 className="font-display font-bold text-xl text-white">
@@ -267,7 +272,7 @@ export function ContactSection() {
                   placeholder="e.g. Hiring Manager / Tech Lead"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-900 border border-white/10 text-white placeholder:text-slate-600 focus:outline-none focus:border-cyber-cyan text-xs font-sans"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-900 border border-white/10 text-white placeholder:text-slate-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500/30 text-xs font-sans transition"
                 />
               </div>
               <div>
@@ -278,7 +283,7 @@ export function ContactSection() {
                   placeholder="name@company.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-900 border border-white/10 text-white placeholder:text-slate-600 focus:outline-none focus:border-cyber-cyan text-xs font-sans"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-900 border border-white/10 text-white placeholder:text-slate-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500/30 text-xs font-sans transition"
                 />
               </div>
             </div>
@@ -290,7 +295,7 @@ export function ContactSection() {
                 placeholder="e.g. Java Backend Developer Role / Data Science Project"
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-900 border border-white/10 text-white placeholder:text-slate-600 focus:outline-none focus:border-cyber-cyan text-xs font-sans"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-900 border border-white/10 text-white placeholder:text-slate-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500/30 text-xs font-sans transition"
               />
             </div>
 
@@ -302,14 +307,14 @@ export function ContactSection() {
                 placeholder="Describe your backend engineering requirements, team goals, or interview schedule..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-900 border border-white/10 text-white placeholder:text-slate-600 focus:outline-none focus:border-cyber-cyan text-xs resize-none font-sans"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-obsidian-900 border border-white/10 text-white placeholder:text-slate-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500/30 text-xs resize-none font-sans transition"
               />
             </div>
 
             <button
               type="submit"
               disabled={sending}
-              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-600 hover:from-cyan-400 hover:to-violet-500 text-obsidian-950 font-display font-bold text-xs sm:text-sm tracking-wide shadow-[0_0_20px_rgba(0,242,254,0.3)] flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] transition cursor-pointer disabled:opacity-50"
+              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 hover:from-orange-400 hover:to-amber-500 text-obsidian-950 font-display font-bold text-xs sm:text-sm tracking-wide shadow-[0_0_25px_rgba(255,87,34,0.35)] flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] transition cursor-pointer disabled:opacity-50"
             >
               <Send className="w-4 h-4 text-obsidian-950" />
               <span>{sending ? '⚡ Transmitting to 2400032597cse1@gmail.com...' : 'INITIALIZE TRANSMISSION & SEND'}</span>
@@ -336,7 +341,7 @@ export function ContactSection() {
                     href={feedback.gmailUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 py-1.5 rounded-lg bg-cyber-cyan text-obsidian-950 font-bold hover:bg-cyan-300 transition flex items-center gap-1.5 shadow-sm"
+                    className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 text-obsidian-950 font-bold hover:from-orange-400 hover:to-amber-400 transition flex items-center gap-1.5 shadow-sm"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
                     <span>Send via Web Gmail &rarr;</span>

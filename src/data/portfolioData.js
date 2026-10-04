@@ -6,16 +6,16 @@ export const RESUME_DATA = {
   location: "Visakhapatnam, Andhra Pradesh, India",
   email: "2400032597cse1@gmail.com",
   phone: "+91 9490238585",
-  summary: "Results-driven Java Backend Developer with strong expertise in Java, Spring Boot, Spring Framework, RESTful APIs, MySQL, and SQL. Proficient in designing scalable backend architectures, relational database schemas, stateless JWT authentication, and data-driven solutions using Python and SQL. 1000+ competitive programming problems solved across CodeChef, LeetCode, and HackerRank.",
+  summary: "Software and Artificial Intelligence Engineer skilled in developing scalable backend systems, automated data pipelines, and AI-powered web applications using Java (Spring Boot), Python, SQL, and LLM APIs. Proficient in prompt engineering, RESTful microservice architectures, relational database indexing, and data analysis using Python libraries. Experienced in integrating Generative AI workflows into production services and resolving complex algorithmic challenges, with 1,000+ problems solved across LeetCode and CodeChef.",
   resumeFileName: "resume.pdf",
-  downloadFileName: "resume.pdf",
+  downloadFileName: "Cherukuri_Venkatesh_Resume.pdf",
   
   roles: [
-    "Java Backend Developer (Spring Boot, Microservices, REST APIs)",
-    "Data Science & Data Engineering Practitioner",
-    "AI Engineer & Google Gemini API Specialist",
-    "Forward Deployment Engineer (FDE) • Deployment Ready",
-    "Cloud Technologies Engineer (Microsoft Azure AZ-900 Certified)"
+    "Enterprise Backend Developer (Spring Boot, Java, Microservices)",
+    "AI Systems Engineer (RAG, LLMs & Prompt Workflows)",
+    "Python DSA & Data Analytics (Pandas, NumPy, Matplotlib)",
+    "Forward Deployed Engineer (FDE) • Cloud & DevOps Ready",
+    "Cloud Technologies Engineer (Microsoft Azure AZ-104 & AZ-900 Certified)"
   ],
 
   stats: {
@@ -63,33 +63,33 @@ export const RESUME_DATA = {
   projects: [
     {
       id: "aayush",
-      title: "Aayush – Unified Healthcare Ecosystem",
+      title: "Aayush Smart Healthcare Platform",
       type: "Full Stack Java Application",
-      badge: "FULL STACK JAVA APPLICATION",
-      badgeColor: "border-cyan-500/30 text-cyber-cyan bg-cyan-500/10",
-      securityPill: "JWT RBAC • 4 ROLES",
+      badge: "ENTERPRISE JAVA • RESTFUL APIS",
+      badgeColor: "border-orange-500/30 text-orange-400 bg-orange-500/10",
+      securityPill: "JWT RBAC • 100% SECURE",
       endpointsCount: "25+ Endpoints",
-      description: "Architected and developed a scalable multi-tier healthcare backend delivering 25+ RESTful API endpoints for Electronic Health Records (EHR), digital prescriptions, and diagnostic lab reports.",
-      technologies: ["Java", "Spring Boot", "Spring Data JPA", "React.js", "MySQL", "Spring Security", "JWT", "RESTful APIs", "WebRTC", "Gemini AI"],
+      description: "Architected a multi-tiered healthcare application using Java 21 and Spring Boot to engineer 25+ secure RESTful API endpoints, improving medical data retrieval efficiency by 40%.",
+      technologies: ["Java 21", "Spring Boot", "Spring Data JPA", "React", "MySQL", "Spring Security", "JWT", "REST APIs", "WebRTC", "Gemini AI"],
       github: "https://github.com/Cherukuri-Venkatesh",
       live: "#",
       metrics: [
         { label: "REST Endpoints", val: "25+ Endpoints" },
-        { label: "Security Flow", val: "Stateless JWT RBAC" },
-        { label: "Latency", val: "< 120ms P99" }
+        { label: "Data Efficiency", val: "+40% Faster" },
+        { label: "Symptom Triage", val: "+45% Speedup" }
       ],
       highlights: [
-        "Role-Based Access Control (RBAC): Stateless security across 4 distinct user tiers (Admin, Doctor, Patient, PHC Center).",
-        "WebRTC Teleconsultation: Real-time peer-to-peer encrypted video consultations and doctor queue dispatching.",
-        "Google Gemini AI: Automated symptom assessment triage and intelligent doctor recommendations."
+        "Architected a multi-tiered healthcare application using Java 21 and Spring Boot to engineer 25+ secure RESTful API endpoints, improving medical data retrieval efficiency by 40%.",
+        "Configured stateless authentication and role-based access control (RBAC) using Spring Security and JWT, securing 100% of patient records with zero vulnerabilities.",
+        "Integrated standardized data queue routing and Google Gemini AI APIs to accelerate preliminary symptom triage by 45% for 500+ simulated requests."
       ],
       blueprint: {
         architectureTitle: "System Architecture & Design",
-        architecture: "Architected a multi-tier healthcare backend engineered with Java and Spring Boot. Exposes 25+ RESTful API endpoints handling patient Electronic Health Records (EHR), automated digital prescriptions, laboratory diagnostic reports, and role-segregated patient histories.",
+        architecture: "Architected a multi-tiered healthcare application using Java 21 and Spring Boot to engineer 25+ secure RESTful API endpoints, improving medical data retrieval efficiency by 40%. Exposes 25+ RESTful API endpoints handling patient Electronic Health Records (EHR), automated digital prescriptions, laboratory diagnostic reports, and role-segregated patient histories.",
         securityTitle: "Security & Role-Based Access Control (RBAC)",
-        security: "Secured sensitive medical records using stateless Spring Security filter chains and JWT (JSON Web Tokens). Enforces granular access control across 4 distinct user tiers: Admin, Doctor, Patient, and Primary Health Center (PHC) staff.",
+        security: "Configured stateless authentication and role-based access control (RBAC) using Spring Security and JWT, securing 100% of patient records with zero vulnerabilities across 4 distinct user tiers: Admin, Doctor, Patient, and Primary Health Center (PHC) staff.",
         integrationTitle: "Realtime WebRTC & Google Gemini AI Integration",
-        integration: "Integrated peer-to-peer encrypted WebRTC video streaming for direct doctor teleconsultations. Leveraged the Google Gemini AI API to provide intelligent symptom assessment triage and automated specialist physician recommendations.",
+        integration: "Integrated standardized data queue routing and Google Gemini AI APIs to accelerate preliminary symptom triage by 45% for 500+ simulated requests, coupled with real-time peer-to-peer encrypted WebRTC video streaming.",
         sandbox: {
           title: "Sample REST Endpoint Sandbox:",
           endpoint: "POST /api/v1/telehealth/triage-assessment",
@@ -99,39 +99,39 @@ export const RESUME_DATA = {
       }
     },
     {
-      id: "travel",
-      title: "Smart Travel Booking Engine",
-      type: "Full Stack Web Application",
-      badge: "FULL STACK WEB APPLICATION",
-      badgeColor: "border-violet-500/30 text-cyber-violet bg-violet-500/10",
-      securityPill: "SUB-SECOND LATENCY",
-      endpointsCount: "ACID Verified",
-      description: "Developed an integrated multi-modal travel booking platform consolidating flight, train, and hotel reservations into a centralized interface with real-time itinerary management.",
-      technologies: ["Python", "Java", "Spring Boot", "JavaScript", "MySQL", "HTML5", "CSS3", "REST APIs", "Responsive Web Design"],
+      id: "urbanride",
+      title: "UrbanRide Platform",
+      type: "Full Stack Microservices Ride-Hailing Platform",
+      badge: "SPRING CLOUD • 10K+ CONCURRENT",
+      badgeColor: "border-orange-500/30 text-orange-400 bg-orange-500/10",
+      securityPill: "POLICY-BASED PERMISSIONS",
+      endpointsCount: "25+ Endpoints",
+      description: "Developed a scalable ride-hailing architecture using Spring Boot microservices and React, enhancing horizontal scaling to support 10k+ concurrent requests.",
+      technologies: ["Java 21", "Spring Boot", "Spring Cloud", "React", "MySQL", "Spring Security", "JWT", "REST APIs", "Leaflet"],
       github: "https://github.com/Cherukuri-Venkatesh",
       live: "#",
       metrics: [
-        { label: "Query Speed", val: "< 45ms" },
-        { label: "Consistency", val: "100% ACID" },
-        { label: "Multi-Modal", val: "Flight + Train + Hotel" }
+        { label: "Concurrent Scale", val: "10k+ Requests" },
+        { label: "Booking Latency", val: "-35% Response Time" },
+        { label: "Allocation Accuracy", val: "+25% Accuracy" }
       ],
       highlights: [
-        "Multi-Modal Aggregator: Unified booking pipelines for flights, railways, and hotels under one umbrella.",
-        "Payload Optimization: Engineered lightweight REST DTOs achieving sub-second search latency across catalogs.",
-        "100% ACID Integrity: Normalized MySQL database schemas with optimized indexes and consistent transaction states."
+        "Developed a scalable ride-hailing architecture using Spring Boot microservices and React, enhancing horizontal scaling to support 10k+ concurrent requests.",
+        "Secured 25+ system endpoints with robust credential verification and policy-based permissions, preventing unauthorized data exposure across all pathways.",
+        "Optimized live driver tracking layouts using Leaflet maps and MySQL indexing, reducing booking response times by 35% while increasing vehicle allocation accuracy by 25%."
       ],
       blueprint: {
-        architectureTitle: "Multi-Modal Aggregation Pipeline",
-        architecture: "Consolidated flights, railway schedules, and hotel reservation systems into a single centralized booking interface. Users experience seamless cross-modal itinerary planning with live price comparison and seat reservation.",
-        securityTitle: "High-Throughput Sub-Second Search Latency",
-        security: "Engineered optimized RESTful API services and streamlined DTO serialization. Reduced search payload overhead, allowing clients to query dense travel catalogs with sub-second response times.",
-        integrationTitle: "Database Normalization & ACID Transactional Integrity",
-        integration: "Designed a 3NF normalized MySQL database schema with composite indexes on route origins, travel timestamps, and pricing tiers. Utilized row-level transactional locks to prevent overbooking and maintain 100% data consistency.",
+        architectureTitle: "Ride-Hailing Microservice Architecture",
+        architecture: "Developed a scalable ride-hailing architecture using Spring Boot microservices and React, enhancing horizontal scaling to support 10k+ concurrent requests with fault-tolerant service discovery and load balancing.",
+        securityTitle: "Endpoint Hardening & Policy-Based Permissions",
+        security: "Secured 25+ system endpoints with robust credential verification and policy-based permissions using Spring Security and JWT, preventing unauthorized data exposure across all customer and driver pathways.",
+        integrationTitle: "Real-time Geospatial Tracking & MySQL Indexing",
+        integration: "Optimized live driver tracking layouts using Leaflet maps and MySQL spatial indexing, reducing booking response times by 35% while increasing vehicle allocation accuracy by 25%.",
         sandbox: {
-          title: "Sample REST Endpoint Sandbox:",
-          endpoint: "GET /api/v1/routes/multi-modal?origin=VTZ&dest=HYD&mode=ALL",
-          payloadComment: "// Query executed in 14ms across indexed flight and rail schemas",
-          response: "Response [200 OK]: { availableRoutes: 42, latency: \"14ms\", consistency: \"ACID_COMMITTED\" }"
+          title: "Sample Driver Dispatch REST Endpoint Sandbox:",
+          endpoint: "POST /api/v1/dispatch/nearby-drivers?lat=17.6868&lng=83.2185&radius=5km",
+          payloadComment: "// Geospatial query executed in 18ms with Leaflet coordinates and MySQL spatial indexes",
+          response: "Response [200 OK]: { matchedDrivers: 8, nearestEta: \"2 mins\", vehicleType: \"PREMIUM\", dispatchToken: \"urbanride_jwt_dispatched\" }"
         }
       }
     }
@@ -145,7 +145,7 @@ export const RESUME_DATA = {
       highlight: "1000+ Solved",
       color: "#f59e0b",
       badge: "ALGORITHMIC EXCELLENCE",
-      desc: "Extensive competitive programming practice with 1000+ verified solved problems spanning arrays, math, graphs, and dynamic programming."
+      desc: "Extensive competitive programming practice with 1000+ verified solved problems, ranking in the top 5% of active competitive coders."
     },
     {
       platform: "LeetCode",
@@ -154,16 +154,7 @@ export const RESUME_DATA = {
       highlight: "Active Solver",
       color: "#f97316",
       badge: "DATA STRUCTURES",
-      desc: "Daily consistency solving Easy, Medium, and Hard algorithmic problems with a focus on optimal runtime and memory percentiles."
-    },
-    {
-      platform: "HackerRank",
-      handle: "kl2400032597",
-      url: "https://www.hackerrank.com/profile/kl2400032597",
-      highlight: "Badged Practitioner",
-      color: "#10b981",
-      badge: "CORE MASTERY",
-      desc: "Gold/Silver verified badges in Problem Solving, Java, Python, and SQL domains with clean algorithmic implementations."
+      desc: "Consistent daily problem solving across Data Structures & Algorithms, ranking in top competitive percentiles."
     },
     {
       platform: "GitHub",
@@ -172,40 +163,38 @@ export const RESUME_DATA = {
       highlight: "Open Repositories",
       color: "#ffffff",
       badge: "OPEN SOURCE",
-      desc: "Repository source code for full-stack Java Spring Boot projects, ML pipelines, and algorithmic solution libraries."
+      desc: "Repository source code for full-stack Java Spring Boot microservices, AI workflows, and algorithmic solution libraries."
     }
   ],
 
   education: [
     {
-      degree: "Bachelor of Technology (B.Tech) in Computer Science & Engineering",
-      institution: "KL University, Andhra Pradesh, India",
-      period: "2024 – 2028 (Expected)",
+      degree: "Bachelor of Technology in Computer Science and Engineering",
+      institution: "KL University, Andhra Pradesh",
+      period: "Aug 2024 – May 2028 (Expected)",
       score: "CGPA: 9.67 / 10.00",
       status: "Active Student",
       coursework: [
-        "Data Structures & Algorithms",
+        "Data Structures & Algorithms (DSA)",
         "Database Management Systems (DBMS)",
         "Object-Oriented Programming (OOP)",
-        "Java Enterprise Development",
-        "Python for Data Science",
-        "Operating Systems & Multithreading",
-        "Computer Networks",
-        "Software Engineering Principles"
+        "System Architecture",
+        "Operating Systems",
+        "Computer Networks"
       ]
     },
     {
-      degree: "Intermediate (Class XII - MPC)",
+      degree: "Higher Secondary Education (Class XII - MPC)",
       institution: "Kalams Junior College, Andhra Pradesh",
-      period: "2022 – 2024",
+      period: "Jun 2022 – May 2024",
       score: "Percentage: 93.0%",
       status: "Completed",
       coursework: ["Mathematics (Calculus, Algebra)", "Physics (Mechanics, Electromagnetism)", "Chemistry"]
     },
     {
-      degree: "Secondary School Certificate (Class X - SSC)",
+      degree: "Secondary School Education (Class X - SSC)",
       institution: "Ravindra Bharathi School, Andhra Pradesh",
-      period: "2021 – 2022",
+      period: "Jun 2021 – May 2022",
       score: "Percentage: 92.0%",
       status: "Completed",
       coursework: ["Mathematics", "Science", "Computer Fundamentals", "Social Studies"]
@@ -214,44 +203,85 @@ export const RESUME_DATA = {
 
   certifications: [
     {
+      title: "Microsoft Certified: Azure Administrator Associate (AZ-104)",
+      issuer: "Microsoft",
+      date: "September 27, 2026",
+      year: "2026",
+      badge: "AZURE ASSOCIATE",
+      color: "#0078D4",
+      desc: "Demonstrated technical skills in implementing, managing, and monitoring identity, governance, storage, compute, and virtual networks in Microsoft Azure cloud environments."
+    },
+    {
       title: "Microsoft Certified: Azure Fundamentals (AZ-900)",
       issuer: "Microsoft",
-      date: "Verified",
-      badge: "CLOUD INFRASTRUCTURE",
+      date: "July 7, 2026",
+      year: "2026",
+      badge: "AZURE FUNDAMENTALS",
       color: "#0089D6",
       desc: "Demonstrated foundational knowledge of cloud concepts, Azure architectural components, compute & networking services, security, governance, and compliance."
     },
     {
-      title: "ServiceNow Certified: Data Foundations",
+      title: "GitHub Foundations Certification (GH-100)",
+      issuer: "GitHub & Microsoft",
+      date: "September 20, 2026",
+      year: "2026",
+      badge: "DEV PLATFORM & CI/CD",
+      color: "#ffffff",
+      desc: "Certified in core Git and GitHub collaboration, repository administration, pull request lifecycles, Markdown, and automated branch protection protocols."
+    },
+    {
+      title: "ServiceNow Certified Implementation Specialist – Data Foundations",
       issuer: "ServiceNow",
-      date: "Verified",
-      badge: "ENTERPRISE DATA",
+      date: "August 9, 2026",
+      year: "2026",
+      badge: "DATA FOUNDATIONS",
       color: "#81B5A1",
       desc: "Validated proficiency in enterprise schema architectures, Configuration Management Database (CMDB), data models, and workflow automation tables."
     },
     {
+      title: "AI-ML Virtual Internship (Google for Developers)",
+      issuer: "Google for Developers / AICTE / EduSkills",
+      date: "June 2026",
+      year: "2026",
+      badge: "GRADE O (OUTSTANDING)",
+      color: "#4285F4",
+      desc: "8-week intensive virtual internship program supported by Google for Developers, AICTE Ministry of Education, and EduSkills. Achieved Grade O (90-100) in applied ML."
+    },
+    {
+      title: "AI Tools & ChatGPT Workflow Certification",
+      issuer: "be10x",
+      date: "May 17, 2026",
+      year: "2026",
+      badge: "GENERATIVE AI",
+      color: "#FF5722",
+      desc: "Hands-on certification validating practical mastery of generative AI tools, rapid prompt engineering strategies, and automated data analytics."
+    },
+    {
+      title: "NPTEL Online Certification: Fundamental Algorithms",
+      issuer: "IIT Kharagpur / Swayam",
+      date: "Feb 2026",
+      year: "2026",
+      badge: "ELITE CERTIFICATION (73%)",
+      color: "#E53935",
+      desc: "Awarded by IIT Kharagpur and Swayam MoE. Secured Elite classification with 73% consolidated proctored exam score in Fundamental Algorithms: Design and Analysis."
+    },
+    {
       title: "GitHub Copilot Certification (GH-300)",
-      issuer: "GitHub",
-      date: "Verified",
-      badge: "AI DEVELOPER ACCELERATION",
+      issuer: "Microsoft & GitHub",
+      date: "November 21, 2025",
+      year: "2025",
+      badge: "AI PAIR PROGRAMMING",
       color: "#8b5cf6",
       desc: "Certified in AI-assisted software development, generative prompt engineering, test automation generation, and rapid developer productivity workflows."
     },
     {
-      title: "Python Essentials 1 & 2",
-      issuer: "Cisco Networking Academy",
-      date: "Verified",
-      badge: "CORE PYTHON",
-      color: "#3b82f6",
-      desc: "Comprehensive dual certification covering Python syntax, data collections, object-oriented design, exceptions, file I/O, and modular programming."
-    },
-    {
-      title: "Cambridge Linguaskill English Language Certification",
+      title: "Cambridge Linguaskill Business English (B1 Level)",
       issuer: "Cambridge Assessment English",
-      date: "Verified",
-      badge: "BUSINESS COMMUNICATION",
+      date: "March 22, 2025",
+      year: "2025",
+      badge: "BUSINESS ENGLISH (B1)",
       color: "#ec4899",
-      desc: "Certified B1 business and professional English communication, listening, and technical reading comprehension competency."
+      desc: "Certified B1 business and professional English communication, listening, and technical reading comprehension competency (Speaking & Writing B2: 162)."
     }
   ],
 
@@ -266,14 +296,14 @@ export const RESUME_DATA = {
     {
       title: "Smart India Hackathon (SIH) — 2x Team Lead",
       category: "NATIONAL HACKATHON",
-      badgeColor: "border-cyan-500/30 text-cyber-cyan bg-cyan-500/10",
+      badgeColor: "border-orange-500/30 text-orange-400 bg-orange-500/10",
       icon: "Users",
       description: "Selected and served as Team Lead for a 6-member cross-functional engineering team across two national editions, orchestrating sprint workflows, backend architecture, and final demos."
     },
     {
       title: "Academic Hackathon Leadership & Technical Mentorship",
       category: "LEADERSHIP & INNOVATION",
-      badgeColor: "border-emerald-500/30 text-cyber-emerald bg-emerald-500/10",
+      badgeColor: "border-amber-500/30 text-amber-400 bg-amber-500/10",
       icon: "Award",
       description: "Spearheaded technical development for university hackathons, leading code reviews, Git branching governance, and backend REST API deployments."
     }

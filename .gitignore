@@ -26,3 +26,14 @@ dist-ssr
 # Scratch directories
 scratch_repo
 index.legacy.html
+preserve
+hero-sequence
+
+# Screen recordings & raw video captures
+*.mov
+*.mp4
+*.webm
+*.avi
+*.mkv
+*Screen Recording*
+

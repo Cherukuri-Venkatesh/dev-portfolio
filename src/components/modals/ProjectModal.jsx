@@ -22,13 +22,13 @@ export function ProjectModal() {
 
   return (
     <div className="fixed inset-0 z-50 bg-obsidian-950/85 backdrop-blur-xl flex items-center justify-center p-4">
-      <div className="glass-glow-cyan w-full max-w-4xl max-h-[90vh] rounded-3xl border-white/20 shadow-2xl flex flex-col overflow-hidden animate-float">
+      <div className="glass-glow-ember w-full max-w-4xl max-h-[90vh] rounded-3xl border border-orange-500/30 shadow-[0_15px_50px_rgba(255,87,34,0.2)] flex flex-col overflow-hidden animate-float">
         
         {/* Modal Header */}
         <div className="p-6 bg-obsidian-900/90 border-b border-white/10 flex items-center justify-between">
           <div>
-            <div className="font-mono text-xs text-cyber-cyan uppercase font-bold flex items-center gap-2">
-              <Layers className="w-4 h-4" />
+            <div className="font-mono text-xs text-orange-400 uppercase font-bold flex items-center gap-2">
+              <Layers className="w-4 h-4 text-orange-400" />
               <span>{selectedProject.badge}</span>
             </div>
             <h3 className="font-display font-black text-xl sm:text-2xl text-white mt-1">
@@ -37,7 +37,7 @@ export function ProjectModal() {
           </div>
           <button
             onClick={closeModal}
-            className="p-2.5 rounded-xl glass-panel hover:bg-white/10 text-slate-400 hover:text-white transition"
+            className="p-2.5 rounded-xl glass-panel hover:bg-orange-500/10 hover:border-orange-500/30 text-slate-400 hover:text-white transition cursor-pointer"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -49,7 +49,7 @@ export function ProjectModal() {
           
           {/* Tech Stack Banner */}
           <div className="p-4 rounded-2xl bg-obsidian-900 border border-white/10 font-mono text-xs">
-            <span className="text-cyber-cyan font-bold uppercase mr-2">TECH STACK:</span>
+            <span className="text-orange-400 font-bold uppercase mr-2">TECH STACK:</span>
             <span className="text-slate-200">{selectedProject.technologies.join(', ')}</span>
           </div>
 
@@ -57,7 +57,7 @@ export function ProjectModal() {
           {bp.architecture && (
             <div className="space-y-2">
               <h4 className="font-display font-bold text-base text-white flex items-center gap-2">
-                <Cpu className="w-4 h-4 text-cyber-cyan" />
+                <Cpu className="w-4 h-4 text-orange-400" />
                 <span>{bp.architectureTitle || 'System Architecture & Design'}</span>
               </h4>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -70,7 +70,7 @@ export function ProjectModal() {
           {bp.security && (
             <div className="space-y-2">
               <h4 className="font-display font-bold text-base text-white flex items-center gap-2">
-                <Shield className="w-4 h-4 text-cyber-emerald" />
+                <Shield className="w-4 h-4 text-amber-400" />
                 <span>{bp.securityTitle || 'Security & Role-Based Access Control (RBAC)'}</span>
               </h4>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -83,7 +83,7 @@ export function ProjectModal() {
           {bp.integration && (
             <div className="space-y-2">
               <h4 className="font-display font-bold text-base text-white flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-cyber-violet" />
+                <Sparkles className="w-4 h-4 text-orange-400" />
                 <span>{bp.integrationTitle || 'Specialized Integrations & Capabilities'}</span>
               </h4>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -96,12 +96,12 @@ export function ProjectModal() {
           {bp.sandbox && (
             <div className="p-4 sm:p-5 rounded-2xl bg-obsidian-950 border border-white/10 space-y-2 font-mono text-xs shadow-inner">
               <div className="text-slate-400 font-bold uppercase flex items-center gap-1.5">
-                <Terminal className="w-3.5 h-3.5 text-cyber-cyan" />
+                <Terminal className="w-3.5 h-3.5 text-orange-400" />
                 <span>{bp.sandbox.title}</span>
               </div>
-              <div className="text-cyber-emerald font-bold">{bp.sandbox.endpoint}</div>
+              <div className="text-amber-400 font-bold">{bp.sandbox.endpoint}</div>
               <div className="text-slate-500">{bp.sandbox.payloadComment}</div>
-              <div className="text-cyber-cyan leading-relaxed pt-1 border-t border-white/5">
+              <div className="text-orange-400 leading-relaxed pt-1 border-t border-white/5">
                 {bp.sandbox.response}
               </div>
             </div>

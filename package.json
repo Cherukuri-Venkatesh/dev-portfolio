@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "cp src/index.template.html index.html && vite",
-    "build": "cp src/index.template.html index.html && vite build && cp -r dist/* .",
+    "build": "cp src/index.template.html index.html && rm -rf dist && vite build && rm -rf assets && cp -r dist/* .",
     "preview": "vite preview"
   },
   "dependencies": {

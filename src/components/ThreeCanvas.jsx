@@ -742,8 +742,28 @@ export function ThreeCanvas() {
     buildScenePreset(s.activeScene);
 
     const handleMouseMove = (e) => {
-      s.mouseX = (e.clientX - window.innerWidth / 2) * 0.005;
-      s.mouseY = (e.clientY - window.innerHeight / 2) * 0.005;
+      // Check if cursor is over a content container, card, button, project, or skill matrix
+      const target = document.elementFromPoint(e.clientX, e.clientY);
+      const isOverContainer = target && (
+        target !== document.body &&
+        target !== document.documentElement &&
+        target.id !== 'three-background-canvas' &&
+        (
+          target.closest('button, a, input, textarea, select, header, nav, footer, [role="button"]') ||
+          target.closest('.glass-card, .glass-panel, .glass-glow-cyan, .glass-glow-purple, .glass-glow-ember, .glass-card-ember, [class*="bg-obsidian"], [class*="rounded-3xl"], [class*="rounded-2xl"]') ||
+          target.closest('section > div, main > div, article, pre, code, form, table, p, h1, h2, h3, h4, h5, h6, span, ul, ol, li, strong, svg, #hero-canvas, [data-card]')
+        )
+      );
+
+      if (isOverContainer) {
+        // Over containers, projects, skill matrices: disconnect cursor so animation runs smoothly without disturbance
+        s.mouseX = 0;
+        s.mouseY = 0;
+      } else {
+        // Normal empty space: allow cursor to playfully disturb and interact with the 3D background animation
+        s.mouseX = (e.clientX - window.innerWidth / 2) * 0.005;
+        s.mouseY = (e.clientY - window.innerHeight / 2) * 0.005;
+      }
     };
 
     const handleScroll = () => {

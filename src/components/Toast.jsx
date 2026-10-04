@@ -12,14 +12,14 @@ export function ToastContainer() {
       {toasts.map((toast) => (
         <div
           key={toast.id}
-          className="pointer-events-auto flex items-center gap-3 p-3.5 px-4 rounded-2xl glass-glow-cyan border border-cyber-cyan/30 text-white shadow-2xl backdrop-blur-xl animate-float transition-all"
+          className="pointer-events-auto flex items-center gap-3 p-3.5 px-4 rounded-2xl glass-glow-ember border border-orange-500/40 text-white shadow-[0_10px_35px_rgba(255,87,34,0.25)] backdrop-blur-xl animate-float transition-all"
         >
           {toast.type === 'success' ? (
-            <CheckCircle2 className="w-5 h-5 text-cyber-emerald shrink-0" />
+            <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
           ) : toast.type === 'warning' ? (
-            <AlertTriangle className="w-5 h-5 text-cyber-amber shrink-0" />
+            <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0" />
           ) : (
-            <Info className="w-5 h-5 text-cyber-cyan shrink-0" />
+            <Info className="w-5 h-5 text-orange-400 shrink-0" />
           )}
 
           <div className="flex-1 text-xs font-mono font-medium leading-tight">

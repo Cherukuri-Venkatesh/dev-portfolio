@@ -119,14 +119,19 @@ export function TerminalSection() {
   return (
     <section id="terminal" className="space-y-6 scroll-mt-28">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6">
         <div>
-          <div className="font-mono text-xs text-cyber-cyan tracking-widest uppercase flex items-center gap-2">
-            <span>// 09. INTERACTIVE CLI SANDBOX</span>
-            <span className="w-12 h-[1px] bg-cyber-cyan/40"></span>
+          <div className="font-mono text-xs text-orange-400 tracking-widest uppercase flex items-center gap-2">
+            <span className="w-24 h-[2px] bg-gradient-to-r from-orange-500 to-amber-400"></span>
+            <span>08. INTERACTIVE CLI SANDBOX</span>
           </div>
-          <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-white mt-1">
-            System Terminal Emulator
+
+          <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white mt-1.5 tracking-tight">
+            System Terminal &amp;
+            <br className="hidden sm:inline" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500 text-glow-ember">
+              CLI Sandbox
+            </span>
           </h2>
         </div>
         
@@ -137,7 +142,7 @@ export function TerminalSection() {
             <button
               key={cmd}
               onClick={() => executeCommand(cmd)}
-              className="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-cyber-cyan border border-white/10 transition hover:scale-105"
+              className="px-2.5 py-1 rounded-lg bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/30 transition hover:scale-105 cursor-pointer"
             >
               {cmd}
             </button>
@@ -163,7 +168,7 @@ export function TerminalSection() {
           </div>
           <button
             onClick={clearTerminal}
-            className="text-[10px] font-mono text-slate-500 hover:text-slate-300 flex items-center gap-1 transition"
+            className="text-[10px] font-mono text-slate-500 hover:text-slate-300 flex items-center gap-1 transition cursor-pointer"
           >
             <Trash2 className="w-3 h-3" />
             <span>[clear screen]</span>
@@ -178,12 +183,12 @@ export function TerminalSection() {
           {history.map((item, idx) => (
             <div key={idx}>
               {item.type === 'system' && (
-                <div className="text-cyber-cyan text-xs">
+                <div className="text-orange-400 text-xs font-semibold">
                   {item.text}
                 </div>
               )}
               {item.type === 'user' && (
-                <div className="flex items-center gap-2 text-cyber-emerald font-bold pt-1">
+                <div className="flex items-center gap-2 text-amber-400 font-bold pt-1">
                   <span>venkatesh@node:~$</span>
                   <span className="text-white font-normal">{item.text}</span>
                 </div>
@@ -204,10 +209,10 @@ export function TerminalSection() {
 
         {/* Input Prompt */}
         <div className="p-4 bg-obsidian-900/90 border-t border-white/10 flex items-center gap-3">
-          <span className="font-mono text-xs text-cyber-emerald font-bold flex items-center gap-1 shrink-0">
+          <span className="font-mono text-xs text-amber-400 font-bold flex items-center gap-1 shrink-0">
             <span>venkatesh@node</span>
             <span className="text-slate-500">:</span>
-            <span className="text-cyber-cyan">~</span>
+            <span className="text-orange-400">~</span>
             <span className="text-slate-400">$</span>
           </span>
           <input
@@ -223,7 +228,7 @@ export function TerminalSection() {
           />
           <button
             onClick={() => executeCommand(inputVal)}
-            className="px-3.5 py-1.5 rounded-lg bg-cyber-cyan/20 hover:bg-cyber-cyan/30 text-cyber-cyan font-mono text-xs font-bold transition flex items-center gap-1"
+            className="px-3.5 py-1.5 rounded-lg bg-orange-500/20 hover:bg-orange-500/30 text-orange-400 border border-orange-500/30 font-mono text-xs font-bold transition flex items-center gap-1 cursor-pointer"
           >
             <span>Run</span>
             <CornerDownLeft className="w-3.5 h-3.5" />

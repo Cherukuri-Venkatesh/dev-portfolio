@@ -16,20 +16,20 @@
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #00f2fe;
+    background: #ff5722;
   }
 }
 
 /* Glassmorphism Styles */
 .glass-panel {
-  background: rgba(12, 20, 43, 0.65);
+  background: rgba(14, 16, 22, 0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-card {
-  background: rgba(15, 23, 42, 0.7);
+  background: rgba(18, 20, 26, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -37,33 +37,83 @@
 }
 
 .glass-card:hover {
-  background: rgba(15, 23, 42, 0.9);
-  border-color: rgba(0, 242, 254, 0.35);
-  box-shadow: 0 10px 30px -10px rgba(0, 242, 254, 0.15);
+  background: rgba(24, 26, 34, 0.9);
+  border-color: rgba(255, 87, 34, 0.45);
+  box-shadow: 0 10px 30px -10px rgba(255, 87, 34, 0.25);
   transform: translateY(-3px);
 }
 
 .glass-glow-cyan {
-  background: rgba(8, 13, 26, 0.88);
+  background: rgba(18, 16, 20, 0.88);
   backdrop-filter: blur(24px);
-  border: 1px solid rgba(0, 242, 254, 0.25);
-  box-shadow: 0 0 40px rgba(0, 242, 254, 0.08);
+  border: 1px solid rgba(255, 87, 34, 0.3);
+  box-shadow: 0 0 45px rgba(255, 87, 34, 0.15);
 }
 
 .glass-glow-purple {
-  background: rgba(12, 10, 28, 0.88);
+  background: rgba(18, 16, 20, 0.88);
   backdrop-filter: blur(24px);
-  border: 1px solid rgba(168, 85, 247, 0.25);
-  box-shadow: 0 0 40px rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  box-shadow: 0 0 40px rgba(251, 191, 36, 0.12);
+}
+
+.glass-card-ember {
+  background: rgba(18, 16, 20, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-ember:hover {
+  background: rgba(22, 19, 24, 0.9);
+  border-color: rgba(255, 87, 34, 0.45);
+  box-shadow: 0 10px 35px -10px rgba(255, 87, 34, 0.25);
+  transform: translateY(-4px);
+}
+
+.glass-glow-ember {
+  background: rgba(14, 12, 15, 0.88);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 87, 34, 0.3);
+  box-shadow: 0 0 45px rgba(255, 87, 34, 0.12);
 }
 
 /* Text Radiance */
 .text-glow-cyan {
-  text-shadow: 0 0 25px rgba(0, 242, 254, 0.45);
+  text-shadow: 0 0 25px rgba(255, 87, 34, 0.45);
+}
+
+.text-glow-ember {
+  text-shadow: 0 0 30px rgba(255, 87, 34, 0.55);
 }
 
 .text-glow-purple {
-  text-shadow: 0 0 25px rgba(168, 85, 247, 0.45);
+  text-shadow: 0 0 25px rgba(251, 191, 36, 0.45);
+}
+
+/* Split Name Hero Outline Font */
+.text-outline-white {
+  -webkit-text-stroke: 2px #ffffff;
+  color: transparent;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 640px) {
+  .text-outline-white {
+    -webkit-text-stroke: 1.5px #ffffff;
+  }
+}
+
+/* 3D Perspective Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.perspective-1500 {
+  perspective: 1500px;
+}
+.transform-style-3d {
+  transform-style: preserve-3d;
 }
 
 /* Terminal Cursor Blink */
@@ -74,6 +124,23 @@
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
+}
+
+/* Smooth Infinite Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
 /* Print optimizations for Resume sheet */

@@ -1,7 +1,10 @@
-import React from 'react';
-import { RESUME_DATA } from '../data/portfolioData';
+import React, { useState } from 'react';
 import { 
-  ArrowUpRight 
+  ArrowUpRight, 
+  Code2, 
+  Globe2, 
+  Terminal,
+  ExternalLink
 } from 'lucide-react';
 import { 
   LinkedinIcon, 
@@ -12,169 +15,264 @@ import {
 } from './icons/BrandIcons';
 
 export function CodingSection() {
+  const [activeTab, setActiveTab] = useState('all');
+
+  const codingProfiles = [
+    {
+      name: "CodeChef",
+      handle: "kl2400032597",
+      badge: "1000+ PROBLEMS SOLVED",
+      badgeColor: "bg-amber-500/10 text-amber-400 border border-amber-500/30",
+      icon: CodeChefIcon,
+      iconColor: "text-amber-400",
+      iconBg: "bg-amber-500/10 border-amber-500/30",
+      cardBorder: "hover:border-amber-400/50",
+      btnClass: "bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border-amber-500/30",
+      url: "https://www.codechef.com/users/kl2400032597",
+      desc: "Demonstrated strong algorithmic problem-solving, advanced data structure optimization, and regular competitive contest participation.",
+      category: "coding",
+      btnText: "View CodeChef Profile"
+    },
+    {
+      name: "LeetCode",
+      handle: "kl2400032597",
+      badge: "DSA & ALGORITHMS",
+      badgeColor: "bg-orange-500/10 text-orange-400 border border-orange-500/30",
+      icon: LeetCodeIcon,
+      iconColor: "text-orange-400",
+      iconBg: "bg-orange-500/10 border-orange-500/30",
+      cardBorder: "hover:border-orange-400/50",
+      btnClass: "bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border-orange-500/30",
+      url: "https://leetcode.com/u/kl2400032597/",
+      desc: "Algorithmic practice focusing on Dynamic Programming, Trees, Graphs, Hash Maps, Binary Search, and System Concurrency.",
+      category: "coding",
+      btnText: "View LeetCode Profile"
+    },
+    {
+      name: "HackerRank",
+      handle: "kl2400032597",
+      badge: "CORE LANGUAGE SKILLS",
+      badgeColor: "bg-amber-500/10 text-amber-400 border border-amber-500/30",
+      icon: HackerRankIcon,
+      iconColor: "text-amber-400",
+      iconBg: "bg-amber-500/10 border-amber-500/30",
+      cardBorder: "hover:border-amber-400/50",
+      btnClass: "bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border-amber-500/30",
+      url: "https://www.hackerrank.com/profile/kl2400032597",
+      desc: "Algorithmic problem-solving assessments across Java, Python, and relational SQL database queries.",
+      category: "coding",
+      btnText: "View HackerRank Profile"
+    }
+  ];
+
+  const onlineConnections = [
+    {
+      name: "GitHub",
+      handle: "Cherukuri-Venkatesh",
+      badge: "OPEN SOURCE & REPOSITORIES",
+      badgeColor: "bg-orange-500/10 text-orange-400 border border-orange-500/30",
+      icon: GithubIcon,
+      iconColor: "text-white",
+      iconBg: "bg-orange-500/10 border-orange-500/30",
+      cardBorder: "hover:border-orange-500/50",
+      btnClass: "bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border-orange-500/30",
+      url: "https://github.com/Cherukuri-Venkatesh",
+      desc: "Full-stack backend architectures, Spring Boot microservices, Python data scripts, and open-source project repositories.",
+      category: "online",
+      btnText: "Explore GitHub Repositories"
+    },
+    {
+      name: "LinkedIn",
+      handle: "cherukuri-venkatesh",
+      badge: "PROFESSIONAL NETWORK",
+      badgeColor: "bg-amber-500/10 text-amber-400 border border-amber-500/30",
+      icon: LinkedinIcon,
+      iconColor: "text-[#0A66C2]",
+      iconBg: "bg-amber-500/10 border-amber-500/30",
+      cardBorder: "hover:border-amber-400/50",
+      btnClass: "bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border-amber-500/30",
+      url: "https://www.linkedin.com/in/venkateshcherukuri1/",
+      desc: "Connect for technical discussions, software engineering opportunities, enterprise architecture exchanges, and collaboration.",
+      category: "online",
+      btnText: "Connect on LinkedIn"
+    }
+  ];
+
+  const showCoding = activeTab === 'all' || activeTab === 'coding';
+  const showOnline = activeTab === 'all' || activeTab === 'online';
+
   return (
-    <section id="coding" className="space-y-8 scroll-mt-28">
+    <section id="profiles" className="space-y-10 scroll-mt-28">
       
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-5">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6">
         <div>
-          <div className="font-mono text-xs text-cyber-cyan tracking-widest uppercase flex items-center gap-2">
-            <span>// 04. COMPETITIVE PROGRAMMING &amp; PROFILES</span>
-            <span className="w-12 h-[1px] bg-cyber-cyan/40"></span>
+          <div className="font-mono text-xs text-orange-400 tracking-widest uppercase flex items-center gap-2">
+            <span className="w-24 h-[2px] bg-gradient-to-r from-orange-500 to-amber-400"></span>
+            <span>05. PROFILES &amp; CONNECTIONS</span>
           </div>
-          <h2 className="font-display font-bold text-2xl sm:text-3xl text-white mt-1">
-            Coding Profiles &amp; Algorithmic Practice
+
+          <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white mt-1.5 tracking-tight">
+            Profiles &amp;
+            <br className="hidden sm:inline" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500 text-glow-ember">
+              Online Connections
+            </span>
           </h2>
         </div>
-        <p className="font-mono text-xs text-slate-400 max-w-md">
-          1000+ competitive programming problems solved across CodeChef, LeetCode, and HackerRank.
-        </p>
+
+        {/* Tab Switcher */}
+        <div className="flex items-center gap-2 bg-obsidian-950/80 p-1.5 rounded-2xl border border-white/10">
+          <button
+            onClick={() => setActiveTab('all')}
+            className={`px-3.5 py-1.5 rounded-xl font-mono text-xs font-semibold transition cursor-pointer ${
+              activeTab === 'all'
+                ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-obsidian-950 font-bold shadow-md'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            All ({codingProfiles.length + onlineConnections.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('coding')}
+            className={`px-3.5 py-1.5 rounded-xl font-mono text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer ${
+              activeTab === 'coding'
+                ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-obsidian-950 font-bold shadow-md'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <Code2 className="w-3.5 h-3.5" />
+            <span>Coding Profiles</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('online')}
+            className={`px-3.5 py-1.5 rounded-xl font-mono text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer ${
+              activeTab === 'online'
+                ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-obsidian-950 font-bold shadow-md'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <Globe2 className="w-3.5 h-3.5" />
+            <span>Online Connections</span>
+          </button>
+        </div>
       </div>
 
-      {/* Coding Profiles Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        
-        {/* CodeChef Profile Card */}
-        <div className="glass-card p-6 rounded-2xl space-y-3.5 border-white/10 hover:border-amber-400/50 group flex flex-col justify-between">
-          <div className="space-y-3.5">
-            <div className="flex items-center justify-between">
-              <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-110 transition">
-                <CodeChefIcon className="w-6 h-6 text-amber-400" />
-              </div>
-              <span className="px-2.5 py-0.5 rounded bg-amber-500/10 text-amber-400 font-mono text-[10px] font-bold">1000+ SOLVED</span>
-            </div>
-            <div>
-              <h3 className="font-display font-bold text-lg text-white group-hover:text-amber-400 transition-colors">CodeChef</h3>
-              <p className="font-mono text-xs text-slate-400">Handle: kl2400032597</p>
-            </div>
-            <p className="text-xs text-slate-300 leading-relaxed font-sans">
-              Demonstrated strong algorithmic problem-solving, advanced data structure optimization, and competitive programming excellence.
-            </p>
+      {/* CATEGORY 1: Coding Profiles */}
+      {showCoding && (
+        <div className="space-y-4">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+            <h3 className="font-mono text-xs uppercase tracking-wider text-orange-400 font-bold">
+              Category 1 • Competitive Coding Profiles
+            </h3>
           </div>
-          <a
-            href="https://www.codechef.com/users/kl2400032597"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 font-mono text-xs font-bold flex items-center justify-center gap-2 transition mt-2"
-          >
-            <span>View CodeChef Profile</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
-        </div>
 
-        {/* LeetCode Profile Card */}
-        <div className="glass-card p-6 rounded-2xl space-y-3.5 border-white/10 hover:border-orange-400/50 group flex flex-col justify-between">
-          <div className="space-y-3.5">
-            <div className="flex items-center justify-between">
-              <div className="w-11 h-11 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-400 group-hover:scale-110 transition">
-                <LeetCodeIcon className="w-6 h-6 text-orange-400" />
-              </div>
-              <span className="px-2.5 py-0.5 rounded bg-orange-500/10 text-orange-400 font-mono text-[10px] font-bold">DSA &amp; ALGORITHMS</span>
-            </div>
-            <div>
-              <h3 className="font-display font-bold text-lg text-white group-hover:text-orange-400 transition-colors">LeetCode</h3>
-              <p className="font-mono text-xs text-slate-400">Handle: kl2400032597</p>
-            </div>
-            <p className="text-xs text-slate-300 leading-relaxed font-sans">
-              Algorithmic challenges focusing on Dynamic Programming, Trees, Graphs, Hash Maps, and System Concurrency.
-            </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {codingProfiles.map((p, idx) => {
+              const Icon = p.icon;
+              return (
+                <div 
+                  key={idx}
+                  className={`glass-card p-6 rounded-2xl space-y-4 border-white/10 ${p.cardBorder} group flex flex-col justify-between transition-all duration-300 hover:shadow-xl`}
+                >
+                  <div className="space-y-3.5">
+                    <div className="flex items-center justify-between">
+                      <div className={`w-11 h-11 rounded-xl ${p.iconBg} border flex items-center justify-center group-hover:scale-110 transition duration-300`}>
+                        <Icon className={`w-6 h-6 ${p.iconColor}`} />
+                      </div>
+                      <span className={`px-2.5 py-0.5 rounded font-mono text-[10px] font-bold ${p.badgeColor}`}>
+                        {p.badge}
+                      </span>
+                    </div>
+
+                    <div>
+                      <h4 className="font-display font-bold text-lg text-white group-hover:text-orange-400 transition-colors">
+                        {p.name}
+                      </h4>
+                      <p className="font-mono text-xs text-slate-400">Handle: {p.handle}</p>
+                    </div>
+
+                    <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                      {p.desc}
+                    </p>
+                  </div>
+
+                  <a
+                    href={p.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-full py-2.5 rounded-xl border font-mono text-xs font-bold flex items-center justify-center gap-2 transition mt-2 ${p.btnClass}`}
+                  >
+                    <span>{p.btnText}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              );
+            })}
           </div>
-          <a
-            href="https://leetcode.com/u/kl2400032597/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full py-2.5 rounded-xl bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/30 font-mono text-xs font-bold flex items-center justify-center gap-2 transition mt-2"
-          >
-            <span>View LeetCode Profile</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
         </div>
+      )}
 
-        {/* GitHub Profile Card */}
-        <div className="glass-card p-6 rounded-2xl space-y-3.5 border-white/10 hover:border-cyan-400/50 group flex flex-col justify-between">
-          <div className="space-y-3.5">
-            <div className="flex items-center justify-between">
-              <div className="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyber-cyan group-hover:scale-110 transition">
-                <GithubIcon className="w-6 h-6 text-white" />
-              </div>
-              <span className="px-2.5 py-0.5 rounded bg-cyan-500/10 text-cyber-cyan font-mono text-[10px] font-bold">REPOSITORIES &amp; BUILDS</span>
-            </div>
-            <div>
-              <h3 className="font-display font-bold text-lg text-white group-hover:text-cyber-cyan transition-colors">GitHub</h3>
-              <p className="font-mono text-xs text-slate-400">Handle: Cherukuri-Venkatesh</p>
-            </div>
-            <p className="text-xs text-slate-300 leading-relaxed font-sans">
-              Full stack Java backend systems, Spring Boot microservices, Python data scripts, and open-source contributions.
-            </p>
+      {/* CATEGORY 2: Online Connections */}
+      {showOnline && (
+        <div className="space-y-4 pt-2">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+            <h3 className="font-mono text-xs uppercase tracking-wider text-amber-400 font-bold">
+              Category 2 • Online Connections &amp; Developer Networks
+            </h3>
           </div>
-          <a
-            href="https://github.com/Cherukuri-Venkatesh"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full py-2.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyber-cyan border border-cyan-500/30 font-mono text-xs font-bold flex items-center justify-center gap-2 transition mt-2"
-          >
-            <span>View GitHub Repositories</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
-        </div>
 
-        {/* HackerRank Profile Card */}
-        <div className="glass-card p-6 rounded-2xl space-y-3.5 border-white/10 hover:border-emerald-400/50 group flex flex-col justify-between">
-          <div className="space-y-3.5">
-            <div className="flex items-center justify-between">
-              <div className="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-cyber-emerald group-hover:scale-110 transition">
-                <HackerRankIcon className="w-6 h-6 text-cyber-emerald" />
-              </div>
-              <span className="px-2.5 py-0.5 rounded bg-emerald-500/10 text-cyber-emerald font-mono text-[10px] font-bold">CORE SKILLS</span>
-            </div>
-            <div>
-              <h3 className="font-display font-bold text-lg text-white group-hover:text-cyber-emerald transition-colors">HackerRank</h3>
-              <p className="font-mono text-xs text-slate-400">Handle: kl2400032597</p>
-            </div>
-            <p className="text-xs text-slate-300 leading-relaxed font-sans">
-              Algorithmic problem-solving assessments across Java, Python, and relational SQL database queries.
-            </p>
+          <div className="grid md:grid-cols-2 gap-5">
+            {onlineConnections.map((p, idx) => {
+              const Icon = p.icon;
+              return (
+                <div 
+                  key={idx}
+                  className={`glass-card p-6 rounded-2xl space-y-4 border-white/10 ${p.cardBorder} group flex flex-col justify-between transition-all duration-300 hover:shadow-xl`}
+                >
+                  <div className="space-y-3.5">
+                    <div className="flex items-center justify-between">
+                      <div className={`w-11 h-11 rounded-xl ${p.iconBg} border flex items-center justify-center group-hover:scale-110 transition duration-300`}>
+                        <Icon className={`w-6 h-6 ${p.iconColor}`} />
+                      </div>
+                      <span className={`px-2.5 py-0.5 rounded font-mono text-[10px] font-bold ${p.badgeColor}`}>
+                        {p.badge}
+                      </span>
+                    </div>
+
+                    <div>
+                      <h4 className="font-display font-bold text-lg text-white group-hover:text-amber-400 transition-colors">
+                        {p.name}
+                      </h4>
+                      <p className="font-mono text-xs text-slate-400">Network: {p.handle}</p>
+                    </div>
+
+                    <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                      {p.desc}
+                    </p>
+                  </div>
+
+                  <a
+                    href={p.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-full py-2.5 rounded-xl border font-mono text-xs font-bold flex items-center justify-center gap-2 transition mt-2 ${p.btnClass}`}
+                  >
+                    <span>{p.btnText}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              );
+            })}
           </div>
-          <a
-            href="https://www.hackerrank.com/profile/kl2400032597"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full py-2.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-mono text-xs font-bold flex items-center justify-center gap-2 transition mt-2"
-          >
-            <span>View HackerRank Profile</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
         </div>
+      )}
 
-        {/* LinkedIn Profile Card */}
-        <div className="glass-card p-6 rounded-2xl space-y-3.5 border-white/10 hover:border-blue-400/50 group flex flex-col justify-between sm:col-span-2 lg:col-span-1">
-          <div className="space-y-3.5">
-            <div className="flex items-center justify-between">
-              <div className="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:scale-110 transition">
-                <LinkedinIcon className="w-6 h-6 text-[#0A66C2]" />
-              </div>
-              <span className="px-2.5 py-0.5 rounded bg-blue-500/10 text-blue-400 font-mono text-[10px] font-bold">PROFESSIONAL NETWORK</span>
-            </div>
-            <div>
-              <h3 className="font-display font-bold text-lg text-white group-hover:text-blue-400 transition-colors">LinkedIn Network</h3>
-              <p className="font-mono text-xs text-slate-400">Profile: venkateshcherukuri1</p>
-            </div>
-            <p className="text-xs text-slate-300 leading-relaxed font-sans">
-              Connect for technical discussions, backend engineering opportunities, hackathon teams, and recommendations.
-            </p>
-          </div>
-          <a
-            href="https://www.linkedin.com/in/venkateshcherukuri1/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full py-2.5 rounded-xl bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/30 font-mono text-xs font-bold flex items-center justify-center gap-2 transition mt-2"
-          >
-            <span>Connect on LinkedIn</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
-        </div>
-
-      </div>
     </section>
   );
 }
+
+export const ProfilesSection = CodingSection;
+export default CodingSection;

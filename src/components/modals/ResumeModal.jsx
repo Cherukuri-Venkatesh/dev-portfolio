@@ -25,7 +25,7 @@ export function ResumeModal() {
         {/* Resume Header */}
         <div className="p-6 bg-obsidian-900/90 border-b border-white/10 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyber-cyan">
+            <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-400">
               <FileText className="w-5 h-5" />
             </div>
             <div>
@@ -46,7 +46,7 @@ export function ResumeModal() {
                 playSound('success');
                 showToast('Initiating resume.pdf download...', 'success');
               }}
-              className="p-2 px-3 rounded-xl bg-cyber-cyan text-obsidian-950 font-bold font-mono text-xs flex items-center gap-1.5 transition hover:bg-cyan-300"
+              className="p-2 px-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-obsidian-950 font-bold font-mono text-xs flex items-center gap-1.5 transition shadow-sm cursor-pointer"
               title="Download PDF Document"
             >
               <Download className="w-4 h-4" />
@@ -56,21 +56,21 @@ export function ResumeModal() {
               href={`${import.meta.env.BASE_URL}${RESUME_DATA.resumeFileName}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-xl glass-panel hover:bg-white/10 text-slate-300 hover:text-cyber-cyan transition"
+              className="p-2 rounded-xl glass-panel hover:bg-orange-500/10 hover:border-orange-500/30 text-slate-300 hover:text-orange-400 transition"
               title="Open Original PDF in New Tab"
             >
               <ExternalLink className="w-4 h-4" />
             </a>
             <button
               onClick={() => window.print()}
-              className="p-2 rounded-xl glass-panel hover:bg-white/10 text-slate-300 hover:text-white transition"
+              className="p-2 rounded-xl glass-panel hover:bg-white/10 text-slate-300 hover:text-white transition cursor-pointer"
               title="Print Resume"
             >
               <Printer className="w-4 h-4" />
             </button>
             <button
               onClick={closeModal}
-              className="p-2 rounded-xl glass-panel hover:bg-white/10 text-slate-400 hover:text-white transition"
+              className="p-2 rounded-xl glass-panel hover:bg-white/10 text-slate-400 hover:text-white transition cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -83,7 +83,7 @@ export function ResumeModal() {
           {/* Header Info */}
           <div className="border-b border-white/10 pb-4 space-y-1">
             <h2 className="font-display font-black text-2xl text-white">{RESUME_DATA.name.toUpperCase()}</h2>
-            <div className="font-mono text-xs text-cyber-cyan font-bold">JAVA BACKEND DEVELOPER & DATA SCIENCE</div>
+            <div className="font-mono text-xs text-orange-400 font-bold">JAVA BACKEND DEVELOPER &amp; DATA SCIENCE</div>
             <div className="font-mono text-xs text-slate-400 pt-1 flex flex-wrap gap-4">
               <span>📞 {RESUME_DATA.phone}</span>
               <span>✉️ {RESUME_DATA.email}</span>
@@ -93,7 +93,7 @@ export function ResumeModal() {
 
           {/* Professional Summary */}
           <div>
-            <h4 className="font-mono text-xs font-bold text-cyber-cyan uppercase border-b border-white/10 pb-1 mb-2">
+            <h4 className="font-mono text-xs font-bold text-orange-400 uppercase border-b border-white/10 pb-1 mb-2">
               PROFESSIONAL SUMMARY
             </h4>
             <p className="text-slate-300 leading-relaxed text-xs">
@@ -103,23 +103,22 @@ export function ResumeModal() {
 
           {/* Technical Skills */}
           <div>
-            <h4 className="font-mono text-xs font-bold text-cyber-cyan uppercase border-b border-white/10 pb-1 mb-2">
+            <h4 className="font-mono text-xs font-bold text-orange-400 uppercase border-b border-white/10 pb-1 mb-2">
               TECHNICAL SKILLS
             </h4>
             <div className="space-y-1.5 text-xs text-slate-300">
-              <p><strong>Programming Languages:</strong> Python, Java, SQL</p>
-              <p><strong>Backend Technologies:</strong> Spring Boot, Spring Framework, Spring MVC, Spring Data JPA, Hibernate, RESTful APIs, Microservices Architecture</p>
-              <p><strong>Core Concepts:</strong> Data Structures & Algorithms (DSA), Object-Oriented Programming (OOP), Multithreading, System Design, Problem Solving</p>
-              <p><strong>Databases & Cloud:</strong> MySQL, PostgreSQL, Relational Database Modeling, Query Optimization, Microsoft Azure (AZ-900), AWS</p>
-              <p><strong>Authentication & Security:</strong> Spring Security, JWT (JSON Web Tokens) Authentication, Role-Based Access Control (RBAC)</p>
-              <p><strong>Web Technologies:</strong> React.js, HTML5, CSS3, Responsive Web Design, WebRTC</p>
-              <p><strong>Developer Tools & Platforms:</strong> Git, GitHub, GitHub Copilot, Postman, Maven, Docker Basics, VS Code, IntelliJ IDEA</p>
+              <p><strong>Programming Languages:</strong> Java (Core Java, Java 21), Python, SQL, JavaScript</p>
+              <p><strong>Backend &amp; Frameworks:</strong> Spring Boot, Spring Framework, Spring Data JPA, Hibernate, RESTful APIs, Microservices</p>
+              <p><strong>Databases &amp; Data Engineering:</strong> MySQL, PostgreSQL, Relational Schema Design, Query Optimization, ETL Pipelines</p>
+              <p><strong>Cloud &amp; Developer Tools:</strong> Microsoft Azure (AZ-104, AZ-900), AWS Basics, Docker, Git, GitHub, Postman, Apache Maven, VS Code, Render, Vercel, Netlify, Jira</p>
+              <p><strong>Core Competencies:</strong> Data Structures and Algorithms (DSA), Object-Oriented Programming (OOP), System Architecture</p>
+              <p><strong>AI &amp; Infrastructure:</strong> Prompt Engineering, LLM API Integration (OpenAI, Gemini), GitHub Copilot, MCP Servers</p>
             </div>
           </div>
 
           {/* Projects */}
           <div>
-            <h4 className="font-mono text-xs font-bold text-cyber-cyan uppercase border-b border-white/10 pb-1 mb-2">
+            <h4 className="font-mono text-xs font-bold text-orange-400 uppercase border-b border-white/10 pb-1 mb-2">
               PROJECTS
             </h4>
             <div className="space-y-4 text-xs text-slate-300">
@@ -128,7 +127,7 @@ export function ResumeModal() {
                   <div className="flex justify-between font-bold text-white">
                     <span>{proj.title} ({proj.type})</span>
                   </div>
-                  <div className="font-mono text-[11px] text-cyan-400">
+                  <div className="font-mono text-[11px] text-amber-400">
                     Technologies: {proj.technologies.join(', ')}
                   </div>
                   <ul className="list-disc list-inside space-y-1 text-slate-300">
@@ -143,8 +142,8 @@ export function ResumeModal() {
 
           {/* Achievements */}
           <div>
-            <h4 className="font-mono text-xs font-bold text-cyber-cyan uppercase border-b border-white/10 pb-1 mb-2">
-              ACHIEVEMENTS & LEADERSHIP
+            <h4 className="font-mono text-xs font-bold text-orange-400 uppercase border-b border-white/10 pb-1 mb-2">
+              ACHIEVEMENTS &amp; LEADERSHIP
             </h4>
             <ul className="list-disc list-inside space-y-1 text-xs text-slate-300">
               {RESUME_DATA.achievements.map((ach, aIdx) => (
@@ -157,7 +156,7 @@ export function ResumeModal() {
 
           {/* Certifications */}
           <div>
-            <h4 className="font-mono text-xs font-bold text-cyber-cyan uppercase border-b border-white/10 pb-1 mb-2">
+            <h4 className="font-mono text-xs font-bold text-orange-400 uppercase border-b border-white/10 pb-1 mb-2">
               CERTIFICATIONS
             </h4>
             <ul className="list-disc list-inside space-y-1 text-xs text-slate-300">
@@ -171,7 +170,7 @@ export function ResumeModal() {
 
           {/* Education */}
           <div>
-            <h4 className="font-mono text-xs font-bold text-cyber-cyan uppercase border-b border-white/10 pb-1 mb-2">
+            <h4 className="font-mono text-xs font-bold text-orange-400 uppercase border-b border-white/10 pb-1 mb-2">
               EDUCATION
             </h4>
             <div className="space-y-2 text-xs text-slate-300">
@@ -179,7 +178,7 @@ export function ResumeModal() {
                 <div key={eIdx}>
                   <div className="flex justify-between font-bold text-white">
                     <span>{edu.degree} — {edu.institution}</span>
-                    <span className="text-emerald-400 font-mono">{edu.score}</span>
+                    <span className="text-amber-300 font-mono font-bold">{edu.score}</span>
                   </div>
                   <div className="text-[11px] text-slate-400">{edu.period}</div>
                 </div>
@@ -189,11 +188,11 @@ export function ResumeModal() {
 
           {/* Coding Links */}
           <div>
-            <h4 className="font-mono text-xs font-bold text-cyber-cyan uppercase border-b border-white/10 pb-1 mb-2">
-              CODING PROFILES & LINKS
+            <h4 className="font-mono text-xs font-bold text-orange-400 uppercase border-b border-white/10 pb-1 mb-2">
+              CODING PROFILES &amp; LINKS
             </h4>
             <div className="grid sm:grid-cols-2 gap-2 text-xs text-slate-300 font-mono">
-              <a href={RESUME_DATA.socialLinks.codechef} target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">CodeChef: kl2400032597 (1000+ Solved)</a>
+              <a href={RESUME_DATA.socialLinks.codechef} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:underline">CodeChef: kl2400032597 (1000+ Solved)</a>
               <a href={RESUME_DATA.socialLinks.leetcode} target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:underline">LeetCode: kl2400032597</a>
               <a href={RESUME_DATA.socialLinks.github} target="_blank" rel="noopener noreferrer" className="text-white hover:underline">GitHub: Cherukuri-Venkatesh</a>
               <a href={RESUME_DATA.socialLinks.hackerrank} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">HackerRank: kl2400032597</a>

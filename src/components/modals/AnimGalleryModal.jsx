@@ -54,18 +54,18 @@ export function AnimGalleryModal() {
 
   return (
     <div className="fixed inset-0 z-50 bg-obsidian-950/85 backdrop-blur-2xl flex items-center justify-center p-4">
-      <div className="glass-glow-cyan w-full max-w-5xl max-h-[90vh] rounded-3xl border-white/20 shadow-2xl flex flex-col overflow-hidden animate-float">
+      <div className="glass-glow-ember w-full max-w-5xl max-h-[90vh] rounded-3xl border border-orange-500/30 shadow-[0_15px_50px_rgba(255,87,34,0.2)] flex flex-col overflow-hidden animate-float">
         
         {/* Modal Header */}
         <div className="p-6 bg-obsidian-900/90 border-b border-white/10 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyber-cyan">
+            <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-400">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
               <h3 className="font-display font-bold text-lg sm:text-xl text-white flex items-center gap-2 flex-wrap">
-                <span>3D Visual Studio // 10 World-Class Interactive Animations</span>
-                <span className="px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyber-cyan font-mono text-[10px]">
+                <span>3D Visual Studio • 10 Interactive Animations</span>
+                <span className="px-2 py-0.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 font-mono text-[10px]">
                   WebGL 60FPS
                 </span>
               </h3>
@@ -76,7 +76,7 @@ export function AnimGalleryModal() {
           </div>
           <button
             onClick={closeModal}
-            className="p-2.5 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 border border-white/10 text-slate-400 hover:text-white transition"
+            className="p-2.5 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 border border-white/10 text-slate-400 hover:text-white transition cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -91,9 +91,9 @@ export function AnimGalleryModal() {
               <button
                 key={cat.id}
                 onClick={() => handleFilter(cat.id)}
-                className={`px-3 py-1.5 rounded-lg transition ${
+                className={`px-3 py-1.5 rounded-lg transition cursor-pointer ${
                   isActive
-                    ? 'bg-cyber-cyan text-obsidian-950 font-bold'
+                    ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-obsidian-950 font-bold'
                     : 'glass-panel text-slate-300 hover:text-white'
                 }`}
               >
@@ -113,8 +113,8 @@ export function AnimGalleryModal() {
                 key={anim.id}
                 className={`glass-card p-5 rounded-2xl border transition-all space-y-3 relative group ${
                   isActive
-                    ? 'border-cyber-cyan bg-cyan-950/20 shadow-[0_0_25px_rgba(0,242,254,0.15)]'
-                    : 'border-white/10 hover:border-white/20'
+                    ? 'border-orange-500/60 bg-orange-950/20 shadow-[0_0_25px_rgba(255,87,34,0.2)]'
+                    : 'border-white/10 hover:border-orange-500/30'
                 }`}
               >
                 <div className="flex items-center justify-between">
@@ -124,15 +124,15 @@ export function AnimGalleryModal() {
                     {anim.tag}
                   </span>
                   {isActive && (
-                    <span className="flex items-center gap-1 font-mono text-[10px] text-cyber-cyan font-bold">
-                      <span className="w-1.5 h-1.5 rounded-full bg-cyber-cyan animate-pulse"></span>
+                    <span className="flex items-center gap-1 font-mono text-[10px] text-orange-400 font-bold">
+                      <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span>
                       <span>ACTIVE SCENE</span>
                     </span>
                   )}
                 </div>
 
                 <div>
-                  <h4 className="font-display font-bold text-base text-white group-hover:text-cyber-cyan transition-colors flex items-center gap-2">
+                  <h4 className="font-display font-bold text-base text-white group-hover:text-orange-400 transition-colors flex items-center gap-2">
                     <span>{anim.id + 1 < 10 ? '0' + (anim.id + 1) : anim.id + 1}.</span>
                     <span>{anim.name}</span>
                   </h4>
@@ -148,10 +148,10 @@ export function AnimGalleryModal() {
                 <div className="pt-1">
                   <button
                     onClick={() => handleSelectScene(anim.id, anim.name)}
-                    className={`w-full py-2.5 rounded-xl font-mono text-xs font-bold transition flex items-center justify-center gap-2 ${
+                    className={`w-full py-2.5 rounded-xl font-mono text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer ${
                       isActive
-                        ? 'bg-cyber-cyan text-obsidian-950 shadow-md'
-                        : 'glass-panel hover:bg-cyber-cyan hover:text-obsidian-950 text-white border-white/10'
+                        ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-obsidian-950 shadow-md'
+                        : 'glass-panel hover:bg-orange-500 hover:text-obsidian-950 text-white border-white/10'
                     }`}
                   >
                     {isActive ? (
@@ -180,9 +180,9 @@ export function AnimGalleryModal() {
           </div>
           <button
             onClick={closeModal}
-            className="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-obsidian-950 font-bold hover:scale-105 transition shrink-0"
+            className="px-5 py-2 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-obsidian-950 font-bold shadow-[0_0_20px_rgba(255,87,34,0.35)] hover:scale-105 active:scale-95 transition shrink-0 cursor-pointer"
           >
-            Apply & Close Studio
+            Apply &amp; Close Studio
           </button>
         </div>
 

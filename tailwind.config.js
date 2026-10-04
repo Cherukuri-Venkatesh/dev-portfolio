@@ -8,17 +8,35 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Space Grotesk"', 'sans-serif'],
+        display: ['Outfit', '"Space Grotesk"', 'sans-serif'],
         sans: ['Inter', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
+        handwriting: ['Caveat', 'cursive'],
       },
       colors: {
         obsidian: {
-          950: '#030712',
-          900: '#070d1e',
-          850: '#0c142b',
-          800: '#111c3a',
-          700: '#1a294f',
+          950: '#060709',
+          900: '#0c0d12',
+          850: '#11131a',
+          800: '#161922',
+          700: '#1e2230',
+        },
+        ember: {
+          50: '#fff7ed',
+          100: '#ffedd5',
+          200: '#fed7aa',
+          300: '#fdba74',
+          400: '#fb923c',
+          500: '#ff5722',
+          600: '#f4511e',
+          700: '#e64a19',
+          800: '#d84315',
+          900: '#bf360c',
+        },
+        sunset: {
+          400: '#ff8500',
+          500: '#ff6d00',
+          600: '#e65100',
         },
         cyber: {
           cyan: '#00f2fe',

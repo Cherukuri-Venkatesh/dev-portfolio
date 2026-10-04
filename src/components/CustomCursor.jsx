@@ -50,14 +50,14 @@ export function CustomCursor() {
       <div
         ref={dotRef}
         id="cursor-dot"
-        className={`fixed top-0 left-0 w-2 h-2 rounded-full bg-cyber-cyan z-50 pointer-events-none transition-opacity duration-200 shadow-[0_0_10px_#00f2fe] hidden md:block ${
+        className={`fixed top-0 left-0 w-2.5 h-2.5 rounded-full bg-orange-500 z-50 pointer-events-none transition-opacity duration-200 shadow-[0_0_14px_rgba(255,87,34,0.95)] hidden md:block ${
           visible ? 'opacity-100' : 'opacity-0'
         }`}
       />
       <div
         ref={ringRef}
         id="cursor-ring"
-        className={`fixed top-0 left-0 w-8 h-8 rounded-full border border-cyber-cyan/40 z-50 pointer-events-none transition-opacity duration-200 hidden md:block ${
+        className={`fixed top-0 left-0 w-8 h-8 rounded-full border border-orange-500/50 shadow-[0_0_15px_rgba(255,87,34,0.25)] z-50 pointer-events-none transition-opacity duration-200 hidden md:block ${
           visible ? 'opacity-100' : 'opacity-0'
         }`}
       />
