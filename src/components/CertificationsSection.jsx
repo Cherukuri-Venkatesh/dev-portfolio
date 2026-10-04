@@ -24,6 +24,14 @@ import {
   FileText
 } from 'lucide-react';
 
+export const withBase = (path) => {
+  if (!path) return '';
+  if (path.startsWith('http://') || path.startsWith('https://')) return path;
+  const base = import.meta.env.BASE_URL || './';
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return `${base}${cleanPath}`;
+};
+
 export const VERIFIED_CERTIFICATES = [
   {
     id: "az-104",
@@ -233,6 +241,15 @@ export const VERIFIED_CERTIFICATES = [
     description: "International standard assessment by Cambridge Assessment English measuring executive English communication. Achieved CEFR B1 overall (Score 155), scoring high B2 (162) in both Speaking and Writing competencies."
   }
 ];
+
+// Normalize all relative certificate paths with import.meta.env.BASE_URL for GitHub Pages subpath hosting
+VERIFIED_CERTIFICATES.forEach((cert) => {
+  if (cert.thumbnail) cert.thumbnail = withBase(cert.thumbnail);
+  if (cert.pdfUrl) cert.pdfUrl = withBase(cert.pdfUrl);
+  if (cert.verifyUrl && !cert.verifyUrl.startsWith('http')) {
+    cert.verifyUrl = withBase(cert.verifyUrl);
+  }
+});
 
 const CATEGORIES = [
   { id: 'all', label: 'All Categories' },
@@ -542,7 +559,7 @@ export function CertificationsSection() {
                 {/* Certificate Preview Image Box with High-Res Thumbnail */}
                 <div className="relative h-48 w-full overflow-hidden bg-[#06080b] border-b border-white/10 flex items-center justify-center">
                   <img
-                    src={cert.thumbnail}
+                    src={withBase(cert.thumbnail)}
                     alt={cert.title}
                     className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
@@ -737,7 +754,7 @@ export function CertificationsSection() {
                 {/* High-Resolution Document Canvas */}
                 <div className="relative min-h-[320px] max-h-[520px] overflow-auto flex items-center justify-center p-3 sm:p-5 bg-gradient-to-b from-[#080a0f] to-[#040507]">
                   <img
-                    src={activeModalCert.thumbnail}
+                    src={withBase(activeModalCert.thumbnail)}
                     alt={activeModalCert.title}
                     className="w-full h-auto max-h-[480px] object-contain rounded-lg shadow-2xl border border-white/5"
                   />
@@ -752,7 +769,7 @@ export function CertificationsSection() {
 
                   <div className="flex items-center gap-3">
                     <a
-                      href={activeModalCert.pdfUrl}
+                      href={withBase(activeModalCert.pdfUrl)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-orange-400 hover:text-orange-300 flex items-center gap-1.5 font-bold hover:underline"
@@ -866,7 +883,7 @@ export function CertificationsSection() {
                   ) : null}
 
                   <a
-                    href={activeModalCert.pdfUrl}
+                    href={withBase(activeModalCert.pdfUrl)}
                     download
                     className="w-full sm:w-auto flex-1 py-3 px-4 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white font-mono text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer whitespace-nowrap"
                   >

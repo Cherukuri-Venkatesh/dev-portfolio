@@ -18,6 +18,14 @@ import {
 } from 'lucide-react';
 import { GithubIcon } from './icons/BrandIcons';
 
+const withBase = (path) => {
+  if (!path) return '';
+  if (path.startsWith('http://') || path.startsWith('https://')) return path;
+  const base = import.meta.env.BASE_URL || './';
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return `${base}${cleanPath}`;
+};
+
 const DECK_PROJECTS = [
   {
     id: "aayush",
@@ -26,7 +34,7 @@ const DECK_PROJECTS = [
     category: "Java Backend & AI",
     badge: "ENTERPRISE JAVA • RESTFUL APIS",
     badgeColor: "border-orange-500/30 text-orange-400 bg-orange-500/10",
-    image: "/project-aayush.jpg",
+    image: withBase("project-aayush.jpg"),
     accentColor: "#ff5722",
     endpointsCount: "25+ Endpoints",
     latency: "< 120ms P99",
@@ -53,7 +61,7 @@ const DECK_PROJECTS = [
     category: "Spring Boot Microservices & React",
     badge: "10K+ CONCURRENT • LEAFLET MAPS",
     badgeColor: "border-amber-500/30 text-amber-400 bg-amber-500/10",
-    image: "/project-travel.jpg",
+    image: withBase("project-travel.jpg"),
     accentColor: "#ff9800",
     endpointsCount: "25+ Endpoints",
     latency: "< 35ms P99",
