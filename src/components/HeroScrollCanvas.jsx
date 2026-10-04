@@ -348,7 +348,7 @@ export function HeroScrollCanvas() {
         <div className="relative z-20 flex-1 w-full h-full px-4 sm:px-6 lg:px-8 xl:px-10 flex items-center justify-between pt-16 sm:pt-20 lg:pt-22 pb-2 sm:pb-3 pointer-events-none">
           
           {/* Left Column Content Area: Restored Full Bold Name Sizes & Previous Large Presence */}
-          <div className="w-full lg:max-w-[53%] xl:max-w-[50%] space-y-2.5 sm:space-y-3 pointer-events-auto">
+          <div className="w-full lg:max-w-[53%] xl:max-w-[50%] space-y-3.5 sm:space-y-4 pointer-events-auto">
             
             {/* Top Ember Bar & World Welcome Tag */}
             <div className="font-mono text-xs sm:text-sm text-orange-400 tracking-widest uppercase flex items-center gap-2.5">
@@ -358,10 +358,10 @@ export function HeroScrollCanvas() {
 
             {/* Split Name Hero: Enlarged Prominent Typography */}
             <div className="space-y-0.5">
-              <h1 className="font-display font-black text-5xl sm:text-6xl lg:text-7xl xl:text-[84px] 2xl:text-[90px] tracking-tight leading-[0.86] uppercase text-white">
+              <h1 className="font-display font-black text-5xl sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[88px] 2xl:text-[96px] tracking-tight leading-[0.86] uppercase text-white">
                 CHERUKURI
               </h1>
-              <h1 className="font-display font-black text-5xl sm:text-6xl lg:text-7xl xl:text-[84px] 2xl:text-[90px] tracking-tight leading-[0.86] uppercase text-outline-white">
+              <h1 className="font-display font-black text-5xl sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[88px] 2xl:text-[96px] tracking-tight leading-[0.86] uppercase text-outline-white">
                 VENKATESH
               </h1>
 
@@ -381,7 +381,7 @@ export function HeroScrollCanvas() {
             </p>
 
             {/* 5 Feature Cards Grid (Row 1: 3 cards, Row 2: 2 cards) - Increased card & text sizes */}
-            <div className="space-y-2.5 max-w-xl pt-1">
+            <div className="space-y-2.5 sm:space-y-3 max-w-xl pt-1">
               <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
                 {/* Card 1: Backend */}
                 <div className="rounded-xl bg-obsidian-950/80 border border-white/10 hover:border-orange-500/40 p-3 sm:p-3.5 transition backdrop-blur-md flex items-center gap-2.5 group hover:scale-[1.02]">
@@ -443,7 +443,7 @@ export function HeroScrollCanvas() {
             </div>
 
             {/* Action Buttons: VIEW MY WORK, Get In Touch, Resume */}
-            <div className="flex flex-wrap items-center gap-3 pt-1">
+            <div className="flex flex-wrap items-center gap-3 pt-2 sm:pt-2.5">
               <button
                 onClick={() => scrollToSection('projects')}
                 className="px-6 sm:px-7 py-3 rounded-full bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-obsidian-950 font-display font-black text-xs sm:text-sm tracking-wider uppercase shadow-[0_0_25px_rgba(255,87,34,0.45)] hover:shadow-[0_0_35px_rgba(255,87,34,0.7)] hover:scale-105 active:scale-95 transition flex items-center gap-2 cursor-pointer"
@@ -469,29 +469,9 @@ export function HeroScrollCanvas() {
               </button>
             </div>
 
-            {/* 4 Stats Metrics Row: Increased font sizes for numbers and labels */}
-            <div className="grid grid-cols-4 gap-3 pt-2.5 max-w-xl border-t border-white/10">
-              <div>
-                <div className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-orange-400">3+</div>
-                <div className="font-mono text-[10.5px] sm:text-xs text-slate-300 mt-1 leading-tight font-medium">Projects<br/>Completed</div>
-              </div>
-              <div>
-                <div className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-orange-400">9.67</div>
-                <div className="font-mono text-[10.5px] sm:text-xs text-slate-300 mt-1 leading-tight font-medium">CGPA<br/>KL University</div>
-              </div>
-              <div>
-                <div className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-orange-400">1000+</div>
-                <div className="font-mono text-[10.5px] sm:text-xs text-slate-300 mt-1 leading-tight font-medium">DSA Problems<br/>Solved</div>
-              </div>
-              <div>
-                <div className="font-display font-black text-base sm:text-lg lg:text-xl text-orange-400 leading-tight">Open To</div>
-                <div className="font-mono text-[10.5px] sm:text-xs text-slate-300 mt-1 leading-tight font-medium">Backend | Cloud |<br/>AI | Data | SDE</div>
-              </div>
-            </div>
-
             {/* "Tech I Work With ~" and Tech Stack Row - Increased icons & label size */}
-            <div className="pt-1.5 space-y-2">
-              <div className="font-handwriting text-xl text-slate-200 flex items-center gap-1.5">
+            <div className="pt-2 sm:pt-3 space-y-2.5">
+              <div className="font-handwriting text-xl sm:text-2xl text-slate-200 flex items-center gap-1.5">
                 <span>Tech I Work With</span>
                 <span className="text-orange-400 text-2xl">~</span>
               </div>

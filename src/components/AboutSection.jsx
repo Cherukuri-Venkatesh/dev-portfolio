@@ -72,6 +72,37 @@ export function AboutSection() {
               <span className="text-slate-500">Visakhapatnam, AP</span>
             </div>
           </div>
+
+          {/* Key Academic & Engineering Milestones (Adjusted into Left Bottom Space) */}
+          <div className="glass-card-ember p-5 rounded-2xl border-white/5 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-2xl pointer-events-none" />
+            
+            <div className="flex items-center gap-2 border-b border-white/10 pb-3 mb-4">
+              <Trophy className="w-4 h-4 text-orange-400" />
+              <span className="font-display font-bold text-xs sm:text-sm text-white uppercase tracking-wider">
+                Key Academic &amp; Engineering Metrics
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
+              <div className="p-3 rounded-xl bg-obsidian-900/80 border border-white/5 hover:border-orange-500/30 transition flex flex-col justify-between">
+                <div className="font-display font-black text-2xl sm:text-3xl lg:text-3xl text-orange-400">3+</div>
+                <div className="font-mono text-[10.5px] sm:text-xs text-slate-300 mt-1 leading-snug font-medium">Projects<br/>Completed</div>
+              </div>
+              <div className="p-3 rounded-xl bg-obsidian-900/80 border border-white/5 hover:border-orange-500/30 transition flex flex-col justify-between">
+                <div className="font-display font-black text-2xl sm:text-3xl lg:text-3xl text-orange-400">9.67</div>
+                <div className="font-mono text-[10.5px] sm:text-xs text-slate-300 mt-1 leading-snug font-medium">CGPA<br/>KL University</div>
+              </div>
+              <div className="p-3 rounded-xl bg-obsidian-900/80 border border-white/5 hover:border-orange-500/30 transition flex flex-col justify-between">
+                <div className="font-display font-black text-2xl sm:text-3xl lg:text-3xl text-orange-400">1000+</div>
+                <div className="font-mono text-[10.5px] sm:text-xs text-slate-300 mt-1 leading-snug font-medium">DSA Problems<br/>Solved</div>
+              </div>
+              <div className="p-3 rounded-xl bg-obsidian-900/80 border border-white/5 hover:border-orange-500/30 transition flex flex-col justify-between">
+                <div className="font-display font-black text-sm sm:text-base lg:text-lg text-orange-400 leading-tight">Open To</div>
+                <div className="font-mono text-[10px] sm:text-[11px] text-slate-300 mt-1 leading-snug font-medium">Backend | Cloud<br/>AI | Data | SDE</div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Right Column: Bento Grid with Resume Card & 4 Core Focus Pillars (6 Cols) */}
