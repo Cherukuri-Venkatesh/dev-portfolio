@@ -124,7 +124,7 @@ export function InteractiveProjectDeck() {
           </div>
 
           <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white mt-1.5 tracking-tight">
-            Flagship Engineering &amp;
+            Flagship Engineering &amp;{' '}
             <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500 text-glow-ember">
               Project Deck

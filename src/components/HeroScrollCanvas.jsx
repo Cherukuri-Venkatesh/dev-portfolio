@@ -45,7 +45,8 @@ const getFrameUrl = (num) => {
 export function HeroScrollCanvas() {
   const { openModal, playSound } = usePortfolio();
   const containerRef = useRef(null);
-  const canvasRef = useRef(null);
+  const desktopCanvasRef = useRef(null);
+  const mobileCanvasRef = useRef(null);
   const imagesRef = useRef(new Array(TOTAL_FRAMES + 1));
   const loadedSetRef = useRef(new Set());
   
@@ -59,6 +60,30 @@ export function HeroScrollCanvas() {
   const progressBarRef = useRef(null);
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  // Touch gesture support for mobile scrubbing
+  const touchStartXRef = useRef(null);
+  const touchStartFrameRef = useRef(1);
+
+  const handleTouchStart = (e) => {
+    if (!e.touches || e.touches.length === 0) return;
+    touchStartXRef.current = e.touches[0].clientX;
+    touchStartFrameRef.current = currentFrameRef.current;
+  };
+
+  const handleTouchMove = (e) => {
+    if (touchStartXRef.current === null || !e.touches || e.touches.length === 0) return;
+    const currentX = e.touches[0].clientX;
+    const deltaX = currentX - touchStartXRef.current;
+    // A 160px swipe sweeps through ~75 frames
+    const frameDelta = (deltaX / 160) * 75;
+    const nextFrame = Math.max(1, Math.min(TOTAL_FRAMES, Math.round(touchStartFrameRef.current - frameDelta)));
+    targetFrameRef.current = nextFrame;
+  };
+
+  const handleTouchEnd = () => {
+    touchStartXRef.current = null;
+  };
 
   // Find nearest loaded frame if current target is still loading
   const getNearestLoaded = useCallback((target) => {
@@ -79,12 +104,10 @@ export function HeroScrollCanvas() {
     return imagesRef.current[best] || null;
   }, []);
 
-  // Draw frame on canvas with high-DPI retina scaling
+  // Draw frame on whichever canvas is active/visible with high-DPI retina scaling
   const drawFrame = useCallback((frameNum) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d', { alpha: true });
-    if (!ctx) return;
+    const canvases = [desktopCanvasRef.current, mobileCanvasRef.current].filter(Boolean);
+    if (canvases.length === 0) return;
 
     let img = imagesRef.current[frameNum];
     if (!img || !img.complete || img.naturalWidth === 0) {
@@ -92,31 +115,36 @@ export function HeroScrollCanvas() {
     }
     if (!img || !img.complete || img.naturalWidth === 0) return;
 
-    const rect = canvas.getBoundingClientRect();
-    if (rect.width === 0 || rect.height === 0) return;
+    for (const canvas of canvases) {
+      const rect = canvas.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) continue;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const canvasW = Math.round(rect.width * dpr);
-    const canvasH = Math.round(rect.height * dpr);
+      const ctx = canvas.getContext('2d', { alpha: true });
+      if (!ctx) continue;
 
-    if (canvas.width !== canvasW || canvas.height !== canvasH) {
-      canvas.width = canvasW;
-      canvas.height = canvasH;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const canvasW = Math.round(rect.width * dpr);
+      const canvasH = Math.round(rect.height * dpr);
+
+      if (canvas.width !== canvasW || canvas.height !== canvasH) {
+        canvas.width = canvasW;
+        canvas.height = canvasH;
+      }
+
+      const imgW = img.naturalWidth || 540;
+      const imgH = img.naturalHeight || 960;
+
+      const scale = Math.min(canvasW / imgW, canvasH / imgH) * 0.94;
+      const drawW = imgW * scale;
+      const drawH = imgH * scale;
+      const drawX = Math.round((canvasW - drawW) * 0.5);
+      const drawY = Math.round(canvasH - drawH);
+
+      ctx.clearRect(0, 0, canvasW, canvasH);
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(img, drawX, drawY, drawW, drawH);
     }
-
-    const imgW = img.naturalWidth || 540;
-    const imgH = img.naturalHeight || 960;
-
-    const scale = Math.min(canvasW / imgW, canvasH / imgH) * 0.92;
-    const drawW = imgW * scale;
-    const drawH = imgH * scale;
-    const drawX = Math.round((canvasW - drawW) * 0.5);
-    const drawY = Math.round(canvasH - drawH);
-
-    ctx.clearRect(0, 0, canvasW, canvasH);
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(img, drawX, drawY, drawW, drawH);
     lastDrawnRef.current = frameNum;
   }, [getNearestLoaded]);
 
@@ -232,14 +260,21 @@ export function HeroScrollCanvas() {
       animFrameIdRef.current = requestAnimationFrame(renderLoop);
     };
 
+    const handleResize = () => {
+      handleScroll();
+      lastDrawnRef.current = -1;
+      drawFrame(Math.max(1, Math.min(TOTAL_FRAMES, Math.round(currentFrameRef.current))));
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize, { passive: true });
     handleScroll();
+    handleResize();
     animFrameIdRef.current = requestAnimationFrame(renderLoop);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener('resize', handleResize);
       if (animFrameIdRef.current) cancelAnimationFrame(animFrameIdRef.current);
     };
   }, [drawFrame, updateProgressUI]);
@@ -277,15 +312,329 @@ export function HeroScrollCanvas() {
   };
 
   return (
-    /* Outer 480vh scroll track keeps the viewport completely pinned while scrubbing 350 frames */
+    /* Outer scroll track: natural flowing min-h-screen on mobile/tablet, 480vh locked on desktop */
     <section 
       ref={containerRef}
       id="hero" 
-      className="relative w-full h-[480vh] sm:h-[520vh] bg-[#050505]"
+      className="relative w-full min-h-screen lg:h-[480vh] xl:h-[520vh] bg-[#050505]"
       onMouseMove={handleMouseMove}
     >
-      {/* Pinned Sticky Full-Screen Viewport Container */}
-      <div className="sticky top-0 w-full h-screen overflow-hidden bg-[#050505] flex flex-col justify-between select-none">
+      {/* =========================================================================
+          MOBILE & TABLET VIEWPORT (<lg screens):
+          - Clean hierarchy: Intro first, then centered framed portrait showcase
+          - Zero overlap over facial features
+          - Non-truncated 2-column feature cards
+          - Comfortable touch buttons, tech stack, education and social links
+          ========================================================================= */}
+      <div className="block lg:hidden relative w-full min-h-screen pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6 max-w-xl mx-auto select-none space-y-6">
+        
+        {/* 1. Top Intro Block */}
+        <div className="space-y-3.5">
+          {/* Top Ember Bar & World Welcome Tag */}
+          <div className="font-mono text-xs sm:text-sm text-orange-400 tracking-widest uppercase flex items-center gap-2.5">
+            <span className="w-14 sm:w-20 h-[2px] bg-orange-500 shadow-[0_0_10px_rgba(255,87,34,0.6)]"></span>
+            <span>// WELCOME TO MY WORLD</span>
+          </div>
+
+          {/* Split Name Hero */}
+          <div className="space-y-0.5">
+            <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[0.88] uppercase text-white">
+              CHERUKURI
+            </h1>
+            <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[0.88] uppercase text-outline-white">
+              VENKATESH
+            </h1>
+            <div className="w-20 sm:w-28 h-2 sm:h-2.5 bg-[#ff5722] rounded-full my-3 sm:my-4 shadow-[0_0_22px_rgba(255,87,34,0.85)]" />
+          </div>
+
+          {/* Role Headline */}
+          <div className="font-display font-bold text-lg sm:text-xl text-white flex items-center gap-2">
+            <span>Enterprise Backend Developer</span>
+            <span className="text-orange-500 font-black animate-pulse text-xl leading-none">|</span>
+          </div>
+
+          {/* Bio */}
+          <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-sans">
+            Building scalable systems and exploring opportunities in Backend, Cloud, AI, Data and full-stack development.
+          </p>
+        </div>
+
+        {/* 2. Interactive Framed Portrait Showcase */}
+        <div 
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          className="relative w-full max-w-[340px] sm:max-w-[400px] mx-auto aspect-[3/4] rounded-3xl overflow-hidden border border-orange-500/35 bg-gradient-to-b from-orange-500/[0.05] via-obsidian-950/80 to-obsidian-950 shadow-[0_20px_50px_rgba(0,0,0,0.85),0_0_35px_rgba(255,87,34,0.18)] flex items-end justify-center touch-pan-y group"
+        >
+          {/* Ambient Warm Radial Backlight */}
+          <div 
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-radial from-orange-600/25 via-transparent to-transparent blur-2xl pointer-events-none" 
+          />
+
+          {/* Floating Script Text Behind Subject */}
+          <div className="absolute top-[8%] left-[6%] pointer-events-none select-none font-handwriting text-orange-400/35 text-xl leading-tight -rotate-12 z-20">
+            <div>Software</div>
+            <div>Engineer</div>
+          </div>
+
+          {/* Canvas Vignette & Gradients */}
+          <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-obsidian-950/90 to-transparent pointer-events-none z-20" />
+          <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-obsidian-950/90 to-transparent pointer-events-none z-20" />
+          <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-obsidian-950/90 to-transparent pointer-events-none z-20" />
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-obsidian-950 via-obsidian-950/90 to-transparent pointer-events-none z-20" />
+
+          {/* Mobile Canvas with radial mask */}
+          <canvas
+            ref={mobileCanvasRef}
+            id="hero-canvas-mobile"
+            className="w-full h-full block"
+            style={{
+              WebkitMaskImage: 'radial-gradient(ellipse 78% 86% at 50% 50%, black 55%, transparent 98%)',
+              maskImage: 'radial-gradient(ellipse 78% 86% at 50% 50%, black 55%, transparent 98%)'
+            }}
+          />
+
+          {/* Top Interactive Badge */}
+          <div className="absolute top-3 right-3 z-30 px-2.5 py-1 rounded-full bg-obsidian-950/80 backdrop-blur-md border border-orange-500/30 font-mono text-[9.5px] text-orange-400 flex items-center gap-1.5 shadow-lg">
+            <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+            <span>Interactive 3D</span>
+          </div>
+
+          {/* Quote Card Floating Over Subject */}
+          <div className="absolute bottom-4 left-4 right-4 z-30 flex items-center gap-2.5 px-3.5 py-2 rounded-2xl bg-obsidian-950/90 backdrop-blur-xl border border-orange-500/40 shadow-2xl">
+            <span className="text-orange-500 text-xl font-serif font-black select-none leading-none shrink-0">“</span>
+            <p className="font-mono text-[11px] sm:text-xs text-slate-200 truncate">
+              Turning ideas into impactful software products.
+            </p>
+          </div>
+        </div>
+
+        {/* 3. Action Buttons */}
+        <div className="flex flex-wrap items-center gap-2.5 pt-1">
+          <button
+            onClick={() => scrollToSection('projects')}
+            className="flex-1 min-w-[140px] px-5 py-3 rounded-full bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-obsidian-950 font-display font-black text-xs tracking-wider uppercase shadow-[0_0_25px_rgba(255,87,34,0.45)] hover:shadow-[0_0_35px_rgba(255,87,34,0.7)] hover:scale-105 active:scale-95 transition flex items-center justify-center gap-1.5 cursor-pointer"
+          >
+            <span>VIEW MY WORK</span>
+            <ArrowUpRight className="w-4 h-4 text-obsidian-950 stroke-[3]" />
+          </button>
+
+          <button
+            onClick={() => scrollToSection('contact')}
+            className="px-4.5 py-3 rounded-full bg-obsidian-900/90 border border-white/15 hover:border-orange-500/50 text-slate-200 font-display font-bold text-xs tracking-wide flex items-center gap-2 transition hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-xl"
+          >
+            <MessageSquare className="w-4 h-4 text-orange-400" />
+            <span>Contact</span>
+          </button>
+
+          <button
+            onClick={() => openModal('resume')}
+            className="px-4 py-3 rounded-full bg-obsidian-900/90 border border-white/15 hover:border-orange-500/50 text-slate-200 font-mono text-xs flex items-center gap-2 transition hover:scale-105 cursor-pointer backdrop-blur-xl"
+          >
+            <FileText className="w-4 h-4 text-orange-400" />
+            <span>Resume</span>
+          </button>
+        </div>
+
+        {/* 4. 5 Feature Cards (Clean 2-column grid, no truncation) */}
+        <div className="space-y-2.5 pt-2">
+          <div className="font-mono text-[11px] text-orange-400/90 tracking-wider uppercase font-semibold">
+            // Core Focus Areas
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            {/* Card 1: Backend */}
+            <div className="rounded-xl bg-obsidian-950/85 border border-white/10 hover:border-orange-500/40 p-3 transition backdrop-blur-md flex items-center gap-3">
+              <div className="w-9 h-9 rounded-lg bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-orange-400 shrink-0">
+                <Settings className="w-4.5 h-4.5" />
+              </div>
+              <div className="min-w-0">
+                <div className="font-display font-bold text-xs text-white leading-tight">Backend</div>
+                <div className="font-mono text-[11px] text-slate-300 mt-0.5">Spring Boot, Java</div>
+              </div>
+            </div>
+
+            {/* Card 2: AI & Data */}
+            <div className="rounded-xl bg-obsidian-950/85 border border-white/10 hover:border-orange-500/40 p-3 transition backdrop-blur-md flex items-center gap-3">
+              <div className="w-9 h-9 rounded-lg bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-orange-400 shrink-0">
+                <Database className="w-4.5 h-4.5" />
+              </div>
+              <div className="min-w-0">
+                <div className="font-display font-bold text-xs text-white leading-tight">AI &amp; Data</div>
+                <div className="font-mono text-[11px] text-slate-300 mt-0.5">RAG, Analytics</div>
+              </div>
+            </div>
+
+            {/* Card 3: Cloud & DevOps */}
+            <div className="rounded-xl bg-obsidian-950/85 border border-white/10 hover:border-orange-500/40 p-3 transition backdrop-blur-md flex items-center gap-3">
+              <div className="w-9 h-9 rounded-lg bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-orange-400 shrink-0">
+                <Cloud className="w-4.5 h-4.5" />
+              </div>
+              <div className="min-w-0">
+                <div className="font-display font-bold text-xs text-white leading-tight">Cloud &amp; DevOps</div>
+                <div className="font-mono text-[11px] text-slate-300 mt-0.5">Azure, AWS, Docker</div>
+              </div>
+            </div>
+
+            {/* Card 4: Vibe Coding */}
+            <div className="rounded-xl bg-obsidian-950/85 border border-white/10 hover:border-orange-500/40 p-3 transition backdrop-blur-md flex items-center gap-3">
+              <div className="w-9 h-9 rounded-lg bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-orange-400 shrink-0">
+                <Code className="w-4.5 h-4.5" />
+              </div>
+              <div className="min-w-0">
+                <div className="font-display font-bold text-xs text-white leading-tight">Vibe Coding</div>
+                <div className="font-mono text-[11px] text-slate-300 mt-0.5">React, UI/UX, Modern Web</div>
+              </div>
+            </div>
+
+            {/* Card 5: DSA & Problem Solving (full width on tablet) */}
+            <div className="rounded-xl bg-obsidian-950/85 border border-white/10 hover:border-orange-500/40 p-3 transition backdrop-blur-md flex items-center gap-3 sm:col-span-2">
+              <div className="w-9 h-9 rounded-lg bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-orange-400 shrink-0">
+                <BarChart3 className="w-4.5 h-4.5" />
+              </div>
+              <div className="min-w-0">
+                <div className="font-display font-bold text-xs text-white leading-tight">DSA &amp; Problem Solving</div>
+                <div className="font-mono text-[11px] text-slate-300 mt-0.5">Data Structures, 1000+ Solved</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 5. Tech I Work With */}
+        <div className="pt-2 space-y-2.5">
+          <div className="font-handwriting text-xl text-slate-200 flex items-center gap-1.5">
+            <span>Tech I Work With</span>
+            <span className="text-orange-400 text-2xl">~</span>
+          </div>
+          <div className="flex items-center gap-2 flex-wrap">
+            <div className="w-9 h-9 rounded-full bg-obsidian-900/90 border border-white/10 flex items-center justify-center p-2 shadow-lg" title="Java">
+              <JavaIcon className="w-full h-full" />
+            </div>
+            <div className="w-9 h-9 rounded-full bg-obsidian-900/90 border border-white/10 flex items-center justify-center p-2 shadow-lg" title="Python">
+              <PythonIcon className="w-full h-full" />
+            </div>
+            <div className="w-9 h-9 rounded-full bg-obsidian-900/90 border border-white/10 flex items-center justify-center p-2 shadow-lg" title="Spring Boot">
+              <SpringIcon className="w-full h-full" />
+            </div>
+            <div className="w-9 h-9 rounded-full bg-obsidian-900/90 border border-white/10 flex items-center justify-center p-2 shadow-lg" title="React">
+              <ReactIcon className="w-full h-full" />
+            </div>
+            <div className="w-9 h-9 rounded-full bg-obsidian-900/90 border border-white/10 flex items-center justify-center p-2 shadow-lg" title="Microsoft Azure">
+              <AzureIcon className="w-full h-full" />
+            </div>
+            <div className="w-9 h-9 rounded-full bg-obsidian-900/90 border border-white/10 flex items-center justify-center p-2 shadow-lg" title="Docker">
+              <DockerIcon className="w-full h-full" />
+            </div>
+            <div className="w-9 h-9 rounded-full bg-obsidian-900/90 border border-white/10 flex items-center justify-center p-2 shadow-lg" title="PostgreSQL">
+              <PostgresIcon className="w-full h-full" />
+            </div>
+            <div className="w-9 h-9 rounded-full bg-obsidian-900/90 border border-white/10 flex items-center justify-center p-2 shadow-lg" title="AWS">
+              <AwsIcon className="w-full h-full" />
+            </div>
+            <div className="w-9 h-9 rounded-full bg-obsidian-900/90 border border-white/10 flex items-center justify-center p-2 shadow-lg" title="Git">
+              <GitIcon className="w-full h-full" />
+            </div>
+            <button 
+              onClick={() => scrollToSection('skills')}
+              className="w-9 h-9 rounded-full bg-orange-500/15 border border-orange-500/40 text-orange-400 flex items-center justify-center cursor-pointer shadow-lg"
+              title="View All Skills"
+            >
+              <Plus className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* 6. Academic Status & Open To Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          <a 
+            href="#education"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('education');
+            }}
+            className="rounded-2xl bg-obsidian-950/85 backdrop-blur-xl border border-white/10 hover:border-orange-500/50 p-3.5 transition flex items-center justify-between group cursor-pointer"
+          >
+            <div>
+              <div className="flex items-center gap-2 font-mono text-xs font-bold text-orange-400">
+                <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+                <span>3rd Year • B.Tech CSE</span>
+              </div>
+              <div className="font-mono text-xs text-slate-300 mt-0.5">KL University</div>
+            </div>
+            <ArrowUpRight className="w-4 h-4 text-orange-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </a>
+
+          <a 
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('contact');
+            }}
+            className="rounded-2xl bg-obsidian-950/85 backdrop-blur-xl border border-white/10 hover:border-orange-500/50 p-3.5 transition flex items-center justify-between group cursor-pointer"
+          >
+            <div>
+              <span className="font-mono text-[10px] text-orange-400 uppercase tracking-wider font-bold">Currently Open To</span>
+              <div className="font-mono text-xs text-slate-300 mt-0.5">Backend | Cloud | AI | SDE</div>
+            </div>
+            <ArrowUpRight className="w-4 h-4 text-orange-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </a>
+        </div>
+
+        {/* 7. Social Links */}
+        <div className="flex items-center justify-center gap-3 pt-2">
+          <a
+            href="https://www.linkedin.com/in/venkateshcherukuri1/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => playSound('click')}
+            className="px-4 py-2.5 rounded-xl bg-obsidian-900/90 border border-white/15 text-slate-300 hover:text-orange-400 flex items-center gap-2 font-mono text-xs transition"
+          >
+            <LinkedinIcon className="w-4 h-4 text-orange-400" />
+            <span>LinkedIn</span>
+          </a>
+          <a
+            href="https://github.com/Cherukuri-Venkatesh"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => playSound('click')}
+            className="px-4 py-2.5 rounded-xl bg-obsidian-900/90 border border-white/15 text-slate-300 hover:text-orange-400 flex items-center gap-2 font-mono text-xs transition"
+          >
+            <GithubIcon className="w-4 h-4 text-orange-400" />
+            <span>GitHub</span>
+          </a>
+          <a
+            href="mailto:2400032597cse1@gmail.com"
+            onClick={() => playSound('click')}
+            className="px-4 py-2.5 rounded-xl bg-obsidian-900/90 border border-white/15 text-slate-300 hover:text-orange-400 flex items-center gap-2 font-mono text-xs transition"
+          >
+            <Mail className="w-4 h-4 text-orange-400" />
+            <span>Email</span>
+          </a>
+        </div>
+
+        {/* 8. Scroll Indicator */}
+        <div className="flex flex-col items-center justify-center pt-4">
+          <button
+            onClick={scrollToAbout}
+            className="flex flex-col items-center gap-1.5 text-slate-400 hover:text-orange-400 transition cursor-pointer group"
+          >
+            <div className="w-5 h-8 rounded-full border-2 border-slate-600 group-hover:border-orange-500 flex items-start justify-center p-1 transition-colors">
+              <div className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-bounce" />
+            </div>
+            <span className="font-mono text-[9px] tracking-widest uppercase font-semibold text-slate-400 group-hover:text-orange-300">
+              SCROLL TO EXPLORE
+            </span>
+          </button>
+        </div>
+
+      </div>
+
+      {/* =========================================================================
+          DESKTOP VIEWPORT (lg+ screens):
+          - Exact preserved 480vh pinned interactive experience
+          - Split name, central video canvas scrub, right-hand interactive cards
+          ========================================================================= */}
+      <div className="hidden lg:flex sticky top-0 w-full h-screen overflow-hidden bg-[#050505] flex-col justify-between select-none">
         
         {/* Ambient Warm Radial Backlights */}
         <div 
@@ -326,8 +675,8 @@ export function HeroScrollCanvas() {
 
           {/* Canvas with smooth radial vignette mask */}
           <canvas
-            ref={canvasRef}
-            id="hero-canvas"
+            ref={desktopCanvasRef}
+            id="hero-canvas-desktop"
             className="w-full h-full block"
             style={{
               WebkitMaskImage: 'radial-gradient(ellipse 76% 84% at 50% 50%, black 52%, transparent 98%)',

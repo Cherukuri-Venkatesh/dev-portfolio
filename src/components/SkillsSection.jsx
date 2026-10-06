@@ -480,7 +480,7 @@ export function SkillsSection() {
           </div>
 
           <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white mt-1.5 tracking-tight">
-            Technical Arsenal &amp;
+            Technical Arsenal &amp;{' '}
             <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500 text-glow-ember">
               Core Stack
@@ -493,7 +493,7 @@ export function SkillsSection() {
         </p>
       </div>
 
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1.5 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
         {CATEGORIES.map((cat) => {
           const isActive = selectedCategory === cat.id;
 
@@ -501,7 +501,7 @@ export function SkillsSection() {
             <button
               key={cat.id}
               onClick={() => handleCategoryChange(cat.id)}
-              className={`px-4 py-2 rounded-xl font-mono text-xs transition-all shadow-sm cursor-pointer ${
+              className={`px-4 py-2 rounded-xl font-mono text-xs transition-all shadow-sm cursor-pointer shrink-0 ${
                 isActive
                   ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-obsidian-950 font-bold shadow-[0_0_15px_rgba(255,87,34,0.35)] scale-105'
                   : 'glass-panel text-slate-300 hover:text-white hover:border-orange-500/30'
