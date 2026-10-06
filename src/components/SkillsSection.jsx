@@ -27,7 +27,10 @@ import {
 import {
   Sparkles,
   Layers,
-  Terminal
+  Terminal,
+  ChevronDown,
+  ChevronUp,
+  ArrowUpRight
 } from 'lucide-react';
 
 const CATEGORIES = [
@@ -77,15 +80,15 @@ const SKILLS_MATRIX = [
     tags: ['Spring Boot', 'REST APIs', 'JPA', 'Hibernate']
   },
   {
-    id: 'spring_security',
-    name: 'Spring Security & JWT',
-    category: 'backend',
-    badge: 'SECURITY',
+    id: 'azure',
+    name: 'Microsoft Azure',
+    category: 'cloud_devops',
+    badge: 'AZURE',
     badgeColor: 'border-amber-500/30 text-amber-400 bg-amber-500/10',
-    level: 84,
-    icon: SpringSecurityLogo,
-    desc: 'I have worked with Spring Security, JWT authentication, and role-based access control in backend projects.',
-    tags: ['Spring Security', 'JWT', 'RBAC', 'Authentication']
+    level: 90,
+    icon: AzureLogo,
+    desc: 'I have AZ-104 and AZ-900 certifications and use Azure to learn cloud computing, virtual machines, networking, and services.',
+    tags: ['AZ-104', 'AZ-900', 'Azure VM', 'Networking']
   },
   {
     id: 'microservices',
@@ -98,7 +101,17 @@ const SKILLS_MATRIX = [
     desc: 'I build REST APIs and work with Spring Boot microservices, API Gateway, and service discovery.',
     tags: ['REST APIs', 'Microservices', 'API Gateway', 'Eureka']
   },
-
+  {
+    id: 'spring_security',
+    name: 'Spring Security & JWT',
+    category: 'backend',
+    badge: 'SECURITY',
+    badgeColor: 'border-amber-500/30 text-amber-400 bg-amber-500/10',
+    level: 84,
+    icon: SpringSecurityLogo,
+    desc: 'I have worked with Spring Security, JWT authentication, and role-based access control in backend projects.',
+    tags: ['Spring Security', 'JWT', 'RBAC', 'Authentication']
+  },
   {
     id: 'prompt_engineering',
     name: 'Prompt Engineering & Generative AI',
@@ -120,18 +133,6 @@ const SKILLS_MATRIX = [
     icon: McpServerLogo,
     desc: 'I use GitHub Copilot as a development tool and am exploring MCP and AI-assisted software development.',
     tags: ['GitHub Copilot', 'MCP', 'AI Tools', 'Development']
-  },
-
-  {
-    id: 'azure',
-    name: 'Microsoft Azure',
-    category: 'cloud_devops',
-    badge: 'AZURE',
-    badgeColor: 'border-amber-500/30 text-amber-400 bg-amber-500/10',
-    level: 90,
-    icon: AzureLogo,
-    desc: 'I have AZ-104 and AZ-900 certifications and use Azure to learn cloud computing, virtual machines, networking, and services.',
-    tags: ['AZ-104', 'AZ-900', 'Azure VM', 'Networking']
   },
   {
     id: 'aws',
@@ -336,7 +337,7 @@ const SKILLS_MATRIX = [
   }
 ];
 
-function SkillCard3D({ skill, index }) {
+function SkillCard3D({ skill, index, className = '' }) {
   const [rotate, setRotate] = useState({ x: 0, y: 0 });
   const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
   const [isHovered, setIsHovered] = useState(false);
@@ -386,7 +387,7 @@ function SkillCard3D({ skill, index }) {
             : 'transform 0.08s ease-out',
         transformStyle: 'preserve-3d'
       }}
-      className="relative rounded-3xl p-6 sm:p-7 border border-white/10 bg-obsidian-950/80 backdrop-blur-2xl shadow-xl hover:shadow-[0_20px_40px_rgba(255,87,34,0.18)] hover:border-orange-500/40 transition-colors flex flex-col justify-between overflow-hidden group select-none"
+      className={`relative rounded-3xl p-6 sm:p-7 border border-white/10 bg-obsidian-950/80 backdrop-blur-2xl shadow-xl hover:shadow-[0_20px_40px_rgba(255,87,34,0.18)] hover:border-orange-500/40 transition-colors flex flex-col justify-between overflow-hidden group select-none ${className}`}
     >
       <div
         className="pointer-events-none absolute inset-0 transition-opacity duration-300"
@@ -457,6 +458,7 @@ function SkillCard3D({ skill, index }) {
 export function SkillsSection() {
   const { playSound } = usePortfolio();
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [showAllSkills, setShowAllSkills] = useState(false);
 
   const filteredSkills =
     selectedCategory === 'all'
@@ -467,8 +469,11 @@ export function SkillsSection() {
 
   const handleCategoryChange = (catId) => {
     setSelectedCategory(catId);
+    setShowAllSkills(false);
     playSound('click');
   };
+
+  const isAllCategory = selectedCategory === 'all';
 
   return (
     <section id="skills" className="space-y-10 scroll-mt-28">
@@ -514,15 +519,103 @@ export function SkillsSection() {
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredSkills.map((skill, index) => (
-          <SkillCard3D
-            key={skill.id}
-            skill={skill}
-            index={index}
-          />
-        ))}
-      </div>
-    </section>
+        {filteredSkills.map((skill, index) => {
+          // If in 'All Skills' and not expanded:
+          // Desktop shows top 7 (index 0 to 6).
+          if (isAllCategory && !showAllSkills && index >= 7) {
+            return null;
+          }
+
+          // Mobile view shows top 5 (index 0 to 4).
+          // Hide items at index 5 and 6 on screens smaller than lg (mobile/tablet).
+          const hideOnMobile = (isAllCategory && !showAllSkills && index >= 5) ? 'hidden lg:flex' : '';
+
+          return (
+            <React.Fragment key={skill.id}>
+              <SkillCard3D
+                skill={skill}
+                index={index}
+                className={hideOnMobile}
+              />
+
+                  {/* Mobile View "Show More" Button - Displayed right after the 5th skill (index 4) */}
+                  {isAllCategory && !showAllSkills && index === 4 && (
+                    <div className="lg:hidden col-span-full pt-2">
+                      <button
+                        onClick={() => {
+                          playSound('click');
+                          setShowAllSkills(true);
+                        }}
+                        className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-orange-500/20 via-amber-500/20 to-orange-500/20 border border-orange-500/40 hover:border-orange-500 text-orange-400 hover:text-white font-display font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 transition hover:bg-orange-500/30 cursor-pointer shadow-lg"
+                      >
+                        <span>SHOW MORE</span>
+                        <ChevronDown className="w-4 h-4 text-orange-400" />
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Desktop View "Show More" Tile - Occupies Row 3, Columns 2 & 3 right after the 7th skill (index 6) */}
+                  {isAllCategory && !showAllSkills && index === 6 && (
+                    <div className="hidden lg:flex flex-col justify-between p-6 sm:p-7 rounded-3xl border border-orange-500/40 bg-gradient-to-br from-obsidian-950/90 via-obsidian-950/80 to-orange-950/20 backdrop-blur-2xl shadow-xl hover:shadow-[0_20px_50px_rgba(255,87,34,0.22)] hover:border-orange-500/70 transition-all group col-span-2 relative overflow-hidden select-none">
+                      <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-orange-500/20 transition-all duration-500" />
+
+                      <div className="space-y-3 relative z-10">
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-[10px] font-bold px-3 py-1 rounded-full border border-orange-500/40 text-orange-400 bg-orange-500/10 tracking-widest uppercase flex items-center gap-1.5">
+                            <Sparkles className="w-3 h-3 text-orange-400 animate-pulse" />
+                            <span>ALL TECHNICAL CAPABILITIES</span>
+                          </span>
+                          <span className="font-mono text-xs text-slate-400">Total: {filteredSkills.length} Verified Skills</span>
+                        </div>
+
+                        <h3 className="font-display font-black text-2xl text-white tracking-tight group-hover:text-orange-300 transition-colors">
+                          Explore All Technologies &amp; Tooling
+                        </h3>
+                        <p className="text-xs text-slate-300 font-sans leading-relaxed max-w-lg">
+                          View full engineering matrix including MySQL, PostgreSQL, Docker, Git, Pandas, NumPy, Matplotlib, Vercel, Jira, React, and Software Design Architecture.
+                        </p>
+                      </div>
+
+                      <div className="pt-4 border-t border-white/10 flex items-center justify-between relative z-10 mt-4">
+                        <button
+                          onClick={() => {
+                            playSound('click');
+                            setShowAllSkills(true);
+                          }}
+                          className="px-6 py-3 rounded-2xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-obsidian-950 font-display font-black text-xs tracking-wider uppercase shadow-[0_0_25px_rgba(255,87,34,0.4)] hover:shadow-[0_0_35px_rgba(255,87,34,0.7)] hover:scale-105 active:scale-95 transition flex items-center gap-2 cursor-pointer"
+                        >
+                          <span>SHOW MORE</span>
+                          <ChevronDown className="w-4 h-4 text-obsidian-950 stroke-[3]" />
+                        </button>
+                        <span className="font-mono text-[11px] text-slate-400">
+                          Click to expand full matrix
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </React.Fragment>
+              );
+            })}
+
+          {/* When expanded, show a "Show Less" button */}
+          {isAllCategory && showAllSkills && (
+            <div className="col-span-full flex justify-center pt-4">
+              <button
+                onClick={() => {
+                  playSound('click');
+                  setShowAllSkills(false);
+                  const el = document.getElementById('skills');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-8 py-3.5 rounded-full bg-obsidian-900 border border-orange-500/40 hover:border-orange-500 text-slate-200 hover:text-white font-mono text-xs flex items-center gap-2 transition hover:scale-105 cursor-pointer shadow-lg"
+              >
+                <span>SHOW LESS</span>
+                <ChevronUp className="w-4 h-4 text-orange-400" />
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
   );
 }
 

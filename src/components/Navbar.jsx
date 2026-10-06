@@ -8,13 +8,14 @@ import {
 } from './icons/BrandIcons';
 
 const NAV_ITEMS = [
-  { id: 'hero', label: 'HOME' },
-  { id: 'about', label: 'ABOUT' },
-  { id: 'skills', label: 'SKILLS' },
-  { id: 'projects', label: 'PROJECTS' },
-  { id: 'education', label: 'EDUCATION' },
-  { id: 'certifications', label: 'CERTIFICATIONS' },
-  { id: 'contact', label: 'CONTACT' },
+  { id: 'hero', label: 'HOME', fullLabel: 'HOME' },
+  { id: 'about', label: 'ABOUT', fullLabel: 'ABOUT' },
+  { id: 'skills', label: 'SKILLS', fullLabel: 'SKILLS' },
+  { id: 'projects', label: 'PROJECTS', fullLabel: 'PROJECTS' },
+  { id: 'education', label: 'EDUCATION', fullLabel: 'EDUCATION' },
+  { id: 'profiles', label: 'PROFILES', fullLabel: 'PROFILES & CONNECTIONS' },
+  { id: 'certifications', label: 'CERTIFICATIONS', fullLabel: 'CERTIFICATIONS' },
+  { id: 'contact', label: 'CONTACT', fullLabel: 'CONTACT' },
 ];
 
 export function Navbar() {
@@ -24,11 +25,12 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPos = window.scrollY + 250;
+      const scrollPos = window.scrollY + 200;
       for (const item of NAV_ITEMS) {
         const el = document.getElementById(item.id);
         if (el) {
-          const top = el.offsetTop;
+          const rect = el.getBoundingClientRect();
+          const top = rect.top + window.scrollY;
           const height = el.offsetHeight;
           if (scrollPos >= top && scrollPos < top + height) {
             setActiveSection(item.id);
@@ -47,7 +49,18 @@ export function Navbar() {
     setMobileMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const navOffset = 90;
+      const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+      const targetY = Math.max(0, elementTop - navOffset);
+      window.scrollTo({
+        top: targetY,
+        behavior: 'smooth'
+      });
+      try {
+        window.history.pushState(null, '', `#${id}`);
+      } catch (err) {
+        // ignore error
+      }
     }
   };
 
@@ -153,9 +166,10 @@ export function Navbar() {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="p-2.5 rounded-xl bg-obsidian-900/80 text-left text-slate-300 hover:text-orange-400 hover:bg-orange-500/10 transition"
+                className="p-2.5 rounded-xl bg-obsidian-900/80 text-left text-slate-300 hover:text-orange-400 hover:bg-orange-500/10 transition truncate"
+                title={item.fullLabel}
               >
-                {item.label}
+                {item.fullLabel || item.label}
               </button>
             ))}
           </div>

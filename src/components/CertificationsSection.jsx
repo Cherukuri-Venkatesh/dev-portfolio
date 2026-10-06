@@ -13,6 +13,8 @@ import {
   Copy, 
   Check, 
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
   Eye,
   LayoutGrid,
   List,
@@ -55,29 +57,6 @@ export const VERIFIED_CERTIFICATES = [
     scoreBadge: "ASSOCIATE CERTIFIED",
     skills: ["Azure Compute & VMs", "Virtual Networks", "Storage Accounts", "Entra ID (Azure AD)", "Cloud Governance & Monitoring"],
     description: "Official Microsoft certification validating comprehensive expertise in deploying, configuring, scaling, and managing cloud identity, virtual networks, compute instances, storage containers, and governance policies in Microsoft Azure."
-  },
-  {
-    id: "az-900",
-    title: "Microsoft Certified: Azure Fundamentals",
-    code: "AZ-900",
-    issuer: "Microsoft",
-    issuerColor: "#0078D4",
-    year: "2026",
-    issueDate: "July 7, 2026",
-    expiryDate: "Lifetime Credential (No Expiration)",
-    validityStatus: "Active • Lifetime Validity",
-    credentialId: "26C0F8519E325993",
-    certNumber: "Certification #: 6D4EC5-FP1438",
-    verifyUrl: "https://learn.microsoft.com/en-us/users/venkateshcherukuri-7487/credentials?tab=credentials-tab",
-    verifyPortalName: "Microsoft Learn Official Portal",
-    pdfUrl: "/certificates/az900.pdf",
-    thumbnail: "/certificates/thumbnails/az900.png",
-    category: "cloud",
-    categoryLabel: "Cloud & DevOps",
-    badgeLabel: "AZURE FUNDAMENTALS",
-    scoreBadge: "OFFICIALLY VERIFIED",
-    skills: ["Cloud Architecture", "Core Azure Services", "Security & Network Defense", "Cost Management & SLA"],
-    description: "Foundational Microsoft credential covering core cloud computing paradigms, high-availability architecture, defense-in-depth security, compliance standards, and Azure infrastructure resource provisioning."
   },
   {
     id: "github-foundations",
@@ -124,6 +103,52 @@ export const VERIFIED_CERTIFICATES = [
     scoreBadge: "SPECIALIST CERTIFIED",
     skills: ["CMDB Architecture", "CSDM Data Model", "Enterprise Relational Data", "Asset Governance & Mapping"],
     description: "Certified by ServiceNow in Configuration Management Database (CMDB) configuration, Common Service Data Model (CSDM), relational schema mapping, and enterprise service asset data integrity."
+  },
+  {
+    id: "az-900",
+    title: "Microsoft Certified: Azure Fundamentals",
+    code: "AZ-900",
+    issuer: "Microsoft",
+    issuerColor: "#0078D4",
+    year: "2026",
+    issueDate: "July 7, 2026",
+    expiryDate: "Lifetime Credential (No Expiration)",
+    validityStatus: "Active • Lifetime Validity",
+    credentialId: "26C0F8519E325993",
+    certNumber: "Certification #: 6D4EC5-FP1438",
+    verifyUrl: "https://learn.microsoft.com/en-us/users/venkateshcherukuri-7487/credentials?tab=credentials-tab",
+    verifyPortalName: "Microsoft Learn Official Portal",
+    pdfUrl: "/certificates/az900.pdf",
+    thumbnail: "/certificates/thumbnails/az900.png",
+    category: "cloud",
+    categoryLabel: "Cloud & DevOps",
+    badgeLabel: "AZURE FUNDAMENTALS",
+    scoreBadge: "OFFICIALLY VERIFIED",
+    skills: ["Cloud Architecture", "Core Azure Services", "Security & Network Defense", "Cost Management & SLA"],
+    description: "Foundational Microsoft credential covering core cloud computing paradigms, high-availability architecture, defense-in-depth security, compliance standards, and Azure infrastructure resource provisioning."
+  },
+  {
+    id: "github-copilot",
+    title: "GitHub Copilot Certification",
+    code: "GH-300",
+    issuer: "Microsoft & GitHub",
+    issuerColor: "#FFFFFF",
+    year: "2025",
+    issueDate: "November 21, 2025",
+    expiryDate: "November 22, 2027",
+    validityStatus: "Active • Valid through Nov 2027",
+    credentialId: "40B3B74991E7705A",
+    certNumber: "Certification #: 884304-8V3F16",
+    verifyUrl: "https://learn.microsoft.com/en-gb/users/cherukurivenkatesh-1650/credentials/certification/github-copilot?tab=credentials-tab",
+    verifyPortalName: "Microsoft Learn Official Portal",
+    pdfUrl: "/certificates/github_copilot.pdf",
+    thumbnail: "/certificates/thumbnails/github_copilot.png",
+    category: "ai",
+    categoryLabel: "AI & Data",
+    badgeLabel: "AI PAIR PROGRAMMING",
+    scoreBadge: "COPILOT CERTIFIED",
+    skills: ["AI-Assisted Engineering", "Context Window Optimization", "Unit Test Automation", "Prompt Framing"],
+    description: "Official credential recognizing proficiency in employing GitHub Copilot for code synthesis, unit testing generation, multi-file context optimization, and generative developer workflows."
   },
   {
     id: "aiml-internship",
@@ -195,29 +220,6 @@ export const VERIFIED_CERTIFICATES = [
     description: "Prestigious academic certification awarded by Indian Institute of Technology Kharagpur (IIT Kharagpur) and Swayam MoE. Secured 'Elite' classification with a consolidated proctored exam score of 73% in Advanced Fundamental Algorithms."
   },
   {
-    id: "github-copilot",
-    title: "GitHub Copilot Certification",
-    code: "GH-300",
-    issuer: "Microsoft & GitHub",
-    issuerColor: "#FFFFFF",
-    year: "2025",
-    issueDate: "November 21, 2025",
-    expiryDate: "November 22, 2027",
-    validityStatus: "Active • Valid through Nov 2027",
-    credentialId: "40B3B74991E7705A",
-    certNumber: "Certification #: 884304-8V3F16",
-    verifyUrl: "https://learn.microsoft.com/en-gb/users/cherukurivenkatesh-1650/credentials/certification/github-copilot?tab=credentials-tab",
-    verifyPortalName: "Microsoft Learn Official Portal",
-    pdfUrl: "/certificates/github_copilot.pdf",
-    thumbnail: "/certificates/thumbnails/github_copilot.png",
-    category: "ai",
-    categoryLabel: "AI & Data",
-    badgeLabel: "AI PAIR PROGRAMMING",
-    scoreBadge: "COPILOT CERTIFIED",
-    skills: ["AI-Assisted Engineering", "Context Window Optimization", "Unit Test Automation", "Prompt Framing"],
-    description: "Official credential recognizing proficiency in employing GitHub Copilot for code synthesis, unit testing generation, multi-file context optimization, and generative developer workflows."
-  },
-  {
     id: "linguaskill",
     title: "Cambridge Linguaskill Business English (B1 Level)",
     code: "CAMBRIDGE-B1",
@@ -274,6 +276,9 @@ export function CertificationsSection() {
   const [activeModalCert, setActiveModalCert] = useState(null);
   const [copiedId, setCopiedId] = useState(null);
   const [isZoomed, setIsZoomed] = useState(false);
+  const [showAllCerts, setShowAllCerts] = useState(false);
+
+  const isDefaultView = selectedCategory === 'all' && selectedYear === 'all' && !searchQuery;
 
   // Filtered certificates
   const filteredCertificates = useMemo(() => {
@@ -549,142 +554,267 @@ export function CertificationsSection() {
       {/* GRID VIEW */}
       {viewMode === 'grid' && (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCertificates.map((cert) => (
-            <div
-              key={cert.id}
-              onClick={() => openCertModal(cert)}
-              className="glass-card rounded-3xl overflow-hidden border-white/10 hover:border-orange-500/50 transition-all duration-300 group flex flex-col justify-between hover:shadow-[0_20px_45px_rgba(255,87,34,0.18)] hover:-translate-y-1.5 cursor-pointer bg-obsidian-950/70"
-            >
-              <div>
-                {/* Certificate Preview Image Box with High-Res Thumbnail */}
-                <div className="relative h-48 w-full overflow-hidden bg-[#06080b] border-b border-white/10 flex items-center justify-center">
-                  <img
-                    src={withBase(cert.thumbnail)}
-                    alt={cert.title}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  
-                  {/* Subtle dark edge vignette */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/15 to-transparent pointer-events-none" />
+          {filteredCertificates.map((cert, index) => {
+            // Default view truncation:
+            // Mobile shows top 5 (index 0 to 4). Hide index >= 5 when collapsed.
+            // Desktop shows top 4 (index 0 to 3). Hide index === 4 on desktop when collapsed.
+            if (isDefaultView && !showAllCerts && index >= 5) {
+              return null;
+            }
+            const hideOnDesktop = (isDefaultView && !showAllCerts && index === 4) ? 'lg:hidden' : '';
 
-                  {/* Top-Right Verified Badge */}
-                  <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-obsidian-950/90 backdrop-blur-md border border-orange-500/40 flex items-center justify-center text-orange-400 shadow-xl group-hover:bg-orange-500 group-hover:text-obsidian-950 transition duration-300">
-                    <ShieldCheck className="w-4 h-4" />
-                  </div>
-
-                  {/* Top-Left Category & Year Pill */}
-                  <div className="absolute top-3 left-3 flex items-center gap-1.5">
-                    <span className="font-mono text-[9px] font-bold px-2.5 py-0.5 rounded-full bg-obsidian-950/90 backdrop-blur-md border border-white/15 text-slate-200 uppercase tracking-wider">
-                      {cert.badgeLabel}
-                    </span>
-                    <span className="font-mono text-[9px] font-bold px-2.5 py-0.5 rounded-full bg-orange-500 text-obsidian-950 shadow-sm">
-                      {cert.year}
-                    </span>
-                  </div>
-
-                  {/* Interactive Inspection Hover Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-obsidian-950/75 backdrop-blur-[3px]">
-                    <span className="px-4 py-2.5 rounded-full bg-orange-500 text-obsidian-950 font-mono text-xs font-black flex items-center gap-2 shadow-2xl scale-95 group-hover:scale-100 transition-transform">
-                      <Eye className="w-4 h-4" />
-                      <span>Inspect Certificate</span>
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content Area */}
-                <div className="p-5 space-y-3">
+            return (
+              <React.Fragment key={cert.id}>
+                <div
+                  onClick={() => openCertModal(cert)}
+                  className={`glass-card rounded-3xl overflow-hidden border-white/10 hover:border-orange-500/50 transition-all duration-300 group flex flex-col justify-between hover:shadow-[0_20px_45px_rgba(255,87,34,0.18)] hover:-translate-y-1.5 cursor-pointer bg-obsidian-950/70 ${hideOnDesktop}`}
+                >
                   <div>
-                    <div className="flex items-center justify-between text-[11px] font-mono text-slate-400">
-                      <span className="font-bold text-orange-400">{cert.code}</span>
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-3 h-3 text-slate-500" />
-                        <span>{cert.issueDate}</span>
-                      </span>
+                    {/* Certificate Preview Image Box with High-Res Thumbnail */}
+                    <div className="relative h-48 w-full overflow-hidden bg-[#06080b] border-b border-white/10 flex items-center justify-center">
+                      <img
+                        src={withBase(cert.thumbnail)}
+                        alt={cert.title}
+                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      
+                      {/* Subtle dark edge vignette */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/15 to-transparent pointer-events-none" />
+
+                      {/* Top-Right Verified Badge */}
+                      <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-obsidian-950/90 backdrop-blur-md border border-orange-500/40 flex items-center justify-center text-orange-400 shadow-xl group-hover:bg-orange-500 group-hover:text-obsidian-950 transition duration-300">
+                        <ShieldCheck className="w-4 h-4" />
+                      </div>
+
+                      {/* Top-Left Category & Year Pill */}
+                      <div className="absolute top-3 left-3 flex items-center gap-1.5">
+                        <span className="font-mono text-[9px] font-bold px-2.5 py-0.5 rounded-full bg-obsidian-950/90 backdrop-blur-md border border-white/15 text-slate-200 uppercase tracking-wider">
+                          {cert.badgeLabel}
+                        </span>
+                        <span className="font-mono text-[9px] font-bold px-2.5 py-0.5 rounded-full bg-orange-500 text-obsidian-950 shadow-sm">
+                          {cert.year}
+                        </span>
+                      </div>
+
+                      {/* Interactive Inspection Hover Overlay */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-obsidian-950/75 backdrop-blur-[3px]">
+                        <span className="px-4 py-2.5 rounded-full bg-orange-500 text-obsidian-950 font-mono text-xs font-black flex items-center gap-2 shadow-2xl scale-95 group-hover:scale-100 transition-transform">
+                          <Eye className="w-4 h-4" />
+                          <span>Inspect Certificate</span>
+                        </span>
+                      </div>
                     </div>
 
-                    <h3 className="font-display font-black text-base text-white mt-1 group-hover:text-orange-300 transition-colors line-clamp-2">
-                      {cert.title}
-                    </h3>
+                    {/* Content Area */}
+                    <div className="p-5 space-y-3">
+                      <div>
+                        <div className="flex items-center justify-between text-[11px] font-mono text-slate-400">
+                          <span className="font-bold text-orange-400">{cert.code}</span>
+                          <span className="flex items-center gap-1">
+                            <Calendar className="w-3 h-3 text-slate-500" />
+                            <span>{cert.issueDate}</span>
+                          </span>
+                        </div>
+
+                        <h3 className="font-display font-black text-base text-white mt-1 group-hover:text-orange-300 transition-colors line-clamp-2">
+                          {cert.title}
+                        </h3>
+                      </div>
+
+                      <p className="text-xs text-slate-400 font-sans line-clamp-2 leading-relaxed">
+                        {cert.description}
+                      </p>
+
+                      {/* Skills tags preview */}
+                      <div className="flex flex-wrap gap-1 pt-1">
+                        {cert.skills.slice(0, 3).map((skill, sIdx) => (
+                          <span
+                            key={sIdx}
+                            className="font-mono text-[9px] px-2 py-0.5 rounded-lg bg-white/[0.04] text-slate-300 border border-white/5"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                        {cert.skills.length > 3 && (
+                          <span className="font-mono text-[9px] px-1.5 py-0.5 rounded-lg text-slate-500">
+                            +{cert.skills.length - 3}
+                          </span>
+                        )}
+                      </div>
+                    </div>
                   </div>
 
-                  <p className="text-xs text-slate-400 font-sans line-clamp-2 leading-relaxed">
-                    {cert.description}
-                  </p>
+                  {/* Card Footer: Issuer + Score Tag + Action */}
+                  <div className="px-5 py-3.5 border-t border-white/10 bg-white/[0.02] flex items-center justify-between font-mono text-xs">
+                    <div className="flex items-center gap-1.5 truncate max-w-[170px]">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)] shrink-0" />
+                      <span className="text-slate-300 font-bold truncate">{cert.issuer}</span>
+                    </div>
 
-                  {/* Skills tags preview */}
-                  <div className="flex flex-wrap gap-1 pt-1">
-                    {cert.skills.slice(0, 3).map((skill, sIdx) => (
-                      <span
-                        key={sIdx}
-                        className="font-mono text-[9px] px-2 py-0.5 rounded-lg bg-white/[0.04] text-slate-300 border border-white/5"
+                    <span className="text-orange-400 font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform text-[11px] shrink-0">
+                      <span>View Details</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+                </div>
+
+                {/* Desktop View "Show More" Tile - Occupies Row 2, Columns 2 & 3 right after the 4th certificate (index 3) */}
+                {isDefaultView && !showAllCerts && index === 3 && (
+                  <div className="hidden lg:flex flex-col justify-between p-6 sm:p-7 rounded-3xl border border-orange-500/40 bg-gradient-to-br from-obsidian-950/90 via-obsidian-950/80 to-orange-950/20 backdrop-blur-2xl shadow-xl hover:shadow-[0_20px_50px_rgba(255,87,34,0.22)] hover:border-orange-500/70 transition-all group col-span-2 relative overflow-hidden select-none">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-orange-500/20 transition-all duration-500" />
+
+                    <div className="space-y-3 relative z-10">
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-[10px] font-bold px-3 py-1 rounded-full border border-orange-500/40 text-orange-400 bg-orange-500/10 tracking-widest uppercase flex items-center gap-1.5">
+                          <ShieldCheck className="w-3.5 h-3.5 text-orange-400" />
+                          <span>GLOBAL CREDENTIALS</span>
+                        </span>
+                        <span className="font-mono text-xs text-slate-400">Total: {filteredCertificates.length} Verified Credentials</span>
+                      </div>
+
+                      <h3 className="font-display font-black text-2xl text-white tracking-tight group-hover:text-orange-300 transition-colors">
+                        View All Industry Certifications
+                      </h3>
+                      <p className="text-xs text-slate-300 font-sans leading-relaxed max-w-lg">
+                        Explore additional verified credentials across Artificial Intelligence, Cloud Infrastructure, Machine Learning, and Software Engineering.
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-white/10 flex items-center justify-between relative z-10 mt-4">
+                      <button
+                        onClick={() => {
+                          playSound('click');
+                          setShowAllCerts(true);
+                        }}
+                        className="px-6 py-3 rounded-2xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-obsidian-950 font-display font-black text-xs tracking-wider uppercase shadow-[0_0_25px_rgba(255,87,34,0.4)] hover:shadow-[0_0_35px_rgba(255,87,34,0.7)] hover:scale-105 active:scale-95 transition flex items-center gap-2 cursor-pointer"
                       >
-                        {skill}
+                        <span>SHOW MORE</span>
+                        <ChevronDown className="w-4 h-4 text-obsidian-950 stroke-[3]" />
+                      </button>
+                      <span className="font-mono text-[11px] text-slate-400">
+                        Click to reveal all certifications
                       </span>
-                    ))}
-                    {cert.skills.length > 3 && (
-                      <span className="font-mono text-[9px] px-1.5 py-0.5 rounded-lg text-slate-500">
-                        +{cert.skills.length - 3}
-                      </span>
-                    )}
+                    </div>
                   </div>
-                </div>
-              </div>
+                )}
 
-              {/* Card Footer: Issuer + Score Tag + Action */}
-              <div className="px-5 py-3.5 border-t border-white/10 bg-white/[0.02] flex items-center justify-between font-mono text-xs">
-                <div className="flex items-center gap-1.5 truncate max-w-[170px]">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)] shrink-0" />
-                  <span className="text-slate-300 font-bold truncate">{cert.issuer}</span>
-                </div>
+                {/* Mobile View "Show More" Button - Displayed right after the 5th certificate (index 4) */}
+                {isDefaultView && !showAllCerts && index === 4 && (
+                  <div className="lg:hidden col-span-full pt-2">
+                    <button
+                      onClick={() => {
+                        playSound('click');
+                        setShowAllCerts(true);
+                      }}
+                      className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-orange-500/20 via-amber-500/20 to-orange-500/20 border border-orange-500/40 hover:border-orange-500 text-orange-400 hover:text-white font-display font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 transition hover:bg-orange-500/30 cursor-pointer shadow-lg"
+                    >
+                      <span>SHOW MORE</span>
+                      <ChevronDown className="w-4 h-4 text-orange-400" />
+                    </button>
+                  </div>
+                )}
+              </React.Fragment>
+            );
+          })}
 
-                <span className="text-orange-400 font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform text-[11px] shrink-0">
-                  <span>View Details</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </span>
-              </div>
+          {/* Show Less Button (Grid View) */}
+          {isDefaultView && showAllCerts && (
+            <div className="col-span-full pt-4 flex justify-center">
+              <button
+                onClick={() => {
+                  playSound('click');
+                  setShowAllCerts(false);
+                  const el = document.getElementById('certifications');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-8 py-3.5 rounded-full bg-obsidian-900 border border-orange-500/40 hover:border-orange-500 text-slate-200 hover:text-white font-mono text-xs flex items-center gap-2 transition hover:scale-105 cursor-pointer shadow-lg"
+              >
+                <span>SHOW LESS</span>
+                <ChevronUp className="w-4 h-4 text-orange-400" />
+              </button>
             </div>
-          ))}
+          )}
         </div>
       )}
 
       {/* COMPACT LIST VIEW */}
       {viewMode === 'list' && (
         <div className="space-y-3">
-          {filteredCertificates.map((cert) => (
-            <div
-              key={cert.id}
-              onClick={() => openCertModal(cert)}
-              className="glass-card p-4 sm:p-5 rounded-2xl border-white/10 hover:border-orange-500/40 transition flex flex-col sm:flex-row sm:items-center justify-between gap-4 group cursor-pointer hover:shadow-xl bg-obsidian-950/70"
-            >
-              <div className="flex items-start sm:items-center gap-4">
-                <div className="w-20 h-14 rounded-xl overflow-hidden bg-obsidian-950 shrink-0 border border-white/10 relative">
-                  <img src={cert.thumbnail} alt={cert.title} className="w-full h-full object-cover object-top" />
-                  <span className="absolute bottom-1 right-1 font-mono text-[8px] font-bold px-1 rounded bg-obsidian-950/90 text-orange-400 border border-white/10">
-                    {cert.year}
+          {filteredCertificates.map((cert, index) => {
+            if (isDefaultView && !showAllCerts && index >= 4) {
+              return null;
+            }
+
+            return (
+              <div
+                key={cert.id}
+                onClick={() => openCertModal(cert)}
+                className="glass-card p-4 sm:p-5 rounded-2xl border-white/10 hover:border-orange-500/40 transition flex flex-col sm:flex-row sm:items-center justify-between gap-4 group cursor-pointer hover:shadow-xl bg-obsidian-950/70"
+              >
+                <div className="flex items-start sm:items-center gap-4">
+                  <div className="w-20 h-14 rounded-xl overflow-hidden bg-obsidian-950 shrink-0 border border-white/10 relative">
+                    <img src={cert.thumbnail} alt={cert.title} className="w-full h-full object-cover object-top" />
+                    <span className="absolute bottom-1 right-1 font-mono text-[8px] font-bold px-1 rounded bg-obsidian-950/90 text-orange-400 border border-white/10">
+                      {cert.year}
+                    </span>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-orange-500/10 text-orange-400 border border-orange-500/20">
+                        {cert.code}
+                      </span>
+                      <span className="text-xs text-slate-400 font-mono">{cert.issuer} • {cert.issueDate}</span>
+                    </div>
+                    <h4 className="font-display font-bold text-sm sm:text-base text-white group-hover:text-orange-300 transition-colors mt-0.5">
+                      {cert.title}
+                    </h4>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 shrink-0 self-end sm:self-center">
+                  <span className="px-3.5 py-1.5 rounded-xl bg-orange-500/10 border border-orange-500/30 text-orange-400 font-mono text-xs font-bold flex items-center gap-1 group-hover:bg-orange-500 group-hover:text-obsidian-950 transition">
+                    <span>Inspect Certificate</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-orange-500/10 text-orange-400 border border-orange-500/20">
-                      {cert.code}
-                    </span>
-                    <span className="text-xs text-slate-400 font-mono">{cert.issuer} • {cert.issueDate}</span>
-                  </div>
-                  <h4 className="font-display font-bold text-sm sm:text-base text-white group-hover:text-orange-300 transition-colors mt-0.5">
-                    {cert.title}
-                  </h4>
-                </div>
               </div>
+            );
+          })}
 
-              <div className="flex items-center gap-3 shrink-0 self-end sm:self-center">
-                <span className="px-3.5 py-1.5 rounded-xl bg-orange-500/10 border border-orange-500/30 text-orange-400 font-mono text-xs font-bold flex items-center gap-1 group-hover:bg-orange-500 group-hover:text-obsidian-950 transition">
-                  <span>Inspect Certificate</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </span>
-              </div>
+          {/* Show More Button (List View) */}
+          {isDefaultView && !showAllCerts && (
+            <div className="pt-4 flex justify-center">
+              <button
+                onClick={() => {
+                  playSound('click');
+                  setShowAllCerts(true);
+                }}
+                className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-obsidian-950 font-display font-black text-xs tracking-wider uppercase shadow-[0_0_20px_rgba(255,87,34,0.35)] hover:scale-105 transition flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>SHOW MORE</span>
+                <ChevronDown className="w-4 h-4 text-obsidian-950 stroke-[3]" />
+              </button>
             </div>
-          ))}
+          )}
+
+          {/* Show Less Button (List View) */}
+          {isDefaultView && showAllCerts && (
+            <div className="pt-4 flex justify-center">
+              <button
+                onClick={() => {
+                  playSound('click');
+                  setShowAllCerts(false);
+                  const el = document.getElementById('certifications');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-8 py-3 rounded-full bg-obsidian-900 border border-orange-500/40 hover:border-orange-500 text-slate-200 hover:text-white font-mono text-xs flex items-center gap-2 transition hover:scale-105 cursor-pointer shadow-lg"
+              >
+                <span>SHOW LESS</span>
+                <ChevronUp className="w-4 h-4 text-orange-400" />
+              </button>
+            </div>
+          )}
         </div>
       )}
 
